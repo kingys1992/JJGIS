@@ -1,0 +1,588 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+    <link href="../Css/themes/metro/easyui.css" rel="stylesheet" />
+    <link href="../Css/themes/icon.css" rel="stylesheet" />
+    <link href="../Css/MyStyle.css" rel="stylesheet" type="text/css" />
+    <script src="../Script/jquery-1.11.1.min.js"></script>
+    <script src="../Script/jquery.easyui.min.js"></script>
+    <script src="../Script/easyui-lang-zh_CN.js"></script>
+    <script src="../Script/jquery-json.js"></script>
+    <script src="../Script/hcharts/highcharts.js"></script>
+    <script src="../Script/hcharts/exporting.js"></script>
+    <script src="../Script/hcharts/highcharts-zh_CN.js"></script>
+    <script type="text/javascript">
+
+        //初始化
+        $(document).ready(function () {
+            $('#w').window('close');//关闭窗体
+            // 初始化查询时间，默认本年元月开始，如2017年01月01日开始  今天结束
+            var sDate = new Date(); //获取今天日期
+            var eDate = new Date(); //获取今天日期
+            sDate.setDate(sDate.getDate() - 2);
+            eDate.setDate(eDate.getDate());
+            var yyyys = sDate.getFullYear() + "-01" + "-01";
+            var yyyye = eDate.getFullYear() + "-" + (eDate.getMonth() + 1) + "-" + eDate.getDate();
+
+            $("#BTIME").datebox("setValue", yyyys);
+            //不可以选择大于今天的日期
+            $('#BTIME').datebox('calendar').calendar({
+                validator: function (date) {
+                    var now = new Date();
+                    var d2 = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+                    return date <= d2;
+                }
+            });
+            //不可以选择大于今天的日期
+            $("#ETIME").datebox("setValue", yyyye);
+            $('#ETIME').datebox('calendar').calendar({
+                validator: function (date) {
+                    var now = new Date();
+                    var d2 = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+                    return date <= d2;
+                }
+            });
+
+            //加载datagrid数据；
+            _loadGridData();
+            //加载图表数据
+            _lineChart();
+            //_pieChart();
+        });
+        //查询
+        function Search() {
+            //加载datagrid数据；
+            _loadGridData();
+            //加载图表数据
+            _lineChart();
+            //_pieChart();
+        }
+
+        function _loadGridData() {  //显示
+            $('#datagrid').datagrid({
+                url: "../ashx/OfficeAutomation/leaveSearch.ashx?HYS=" + encodeURI($('#HYS').combobox('getValue'))
+                    + "&BTIME=" + encodeURI($('#BTIME').datebox('getValue'))
+                    + "&ETIME=" + encodeURI($('#ETIME').datebox('getValue')),
+                method: 'Post',
+                onClickRow: function (index, row) { //单机事件
+                },
+                onDblClickRow: function (index, row) { //双机事件
+
+                    $('#w').window({
+                        title: "详细信息",
+                        width: $(window).width() - 150,
+                        height: $(window).height() * 0.9,
+                        top: 20,
+                        left: 150,
+                        padding: 10,
+                        shadow: true,
+                        modal: true,
+                        closed: true,
+                        minimizable: false,
+                        maximizable: false,
+                        collapsible: false
+                    });
+
+                    //加载数据
+                    _windowdatagrid(row.YF);
+
+                    $('#w').window('open');
+
+                },
+                loadMsg: "正在加载数据,请稍候...",
+                nowrap: false, //折行
+                //rownumbers: true, //行号
+                striped: true, //隔行变色
+                idField: 'IID', //主键
+                pagination: false,
+                singleSelect: true, //单选
+                pageSize: 15,
+                pageNumber: 1,
+                pageList: [15, 20, 50, 100],
+                pagination: true,
+                singleSelect: true//单选
+            });
+        }
+
+        function _windowdatagrid(time) {
+            $('#windowdatagrid').datagrid({
+                url: "../ashx/OfficeAutomation/leaveDetail.ashx?TYPE=" + encodeURI($('#HYS').combobox('getValue'))
+                    + "&TIME=" + time,
+                method: 'Post',
+                onClickRow: function (index, row) { //单机事件
+                },
+                onDblClickRow: function (index, row) { //双机事件
+
+                },
+                loadMsg: "正在加载数据,请稍候...",
+                nowrap: false, //折行
+                //rownumbers: true, //行号
+                striped: true, //隔行变色
+                idField: 'IID', //主键
+                pagination: false,
+                singleSelect: true, //单选
+                pageSize: 15,
+                pageNumber: 1,
+                pageList: [15, 20, 50, 100],
+                pagination: true,
+                singleSelect: true//单选
+            });
+        }
+
+        function _lineChart() {
+            $.ajax({
+                type: "post",
+                contentType: "application/json",
+                url: "../ashx/OfficeAutomation/leaveChart.ashx?TYPE=0&HYS=" + encodeURI($('#HYS').combobox('getValue'))
+                    + "&BTIME=" + encodeURI($('#BTIME').datebox('getValue'))
+                    + "&ETIME=" + encodeURI($('#ETIME').datebox('getValue')),
+                dataType: "json",
+                success: function (result) {
+
+                    var result = eval(result);
+                    line(result);
+                }
+            });
+        }
+        function _pieChart() {
+            $.ajax({
+                type: "post",
+                contentType: "application/json",
+                url: "../ashx/OfficeAutomation/leaveChart.ashx?TYPE=1&HYS=" + encodeURI($('#HYS').combobox('getValue'))
+                    + "&BTIME=" + encodeURI($('#BTIME').datebox('getValue'))
+                    + "&ETIME=" + encodeURI($('#ETIME').datebox('getValue')),
+                dataType: "json",
+                success: function (result) {
+                    var result = eval(result);
+                    pie(result);
+                }
+            });
+        }
+        function line(val) {    //月份分组
+
+            var mm = val[0].JMM;
+            var total = val[0].JTOTAL;
+            $('#lines').highcharts({
+                chart: {
+                    type: 'spline'
+                },
+                title: {
+                    text: '请假趋势',
+                    style: {
+                        color: 'red',//颜色
+                        fontSize: '10px'  //字体
+                    }
+                }, exporting: {
+                    enabled: false
+                }, credits: {
+                    enabled: false
+                },
+                xAxis: {
+                    categories: mm,
+                    lineWidth: 1,
+                    alternateGridColor: "#F8F8FF",
+                    lineColor: "#1a96ef",
+                    tickWidth: 0,
+                    labels: {
+                        y: 20, //x轴刻度往下移动20px
+                        style: {
+                            color: '#19a0f5',//颜色
+                            fontSize: '9px'  //字体
+                        }
+                    },
+                }, legend: {
+                    enabled: false
+                },
+                yAxis: {
+                    title: {
+                        text: '(单位:件)',
+                        style: {
+                            color: 'red',//颜色
+                            fontSize: '10px'  //字体
+                        }
+                    },
+                    labels: {
+                        formatter: function () {
+                            return this.value + '';
+                        }
+                    },
+                    tickPositions: [0, 5, 10, 15, 20, 30] // 指定竖轴坐标点的值
+                },
+                tooltip: {
+                    crosshairs: true,
+                    shared: true
+                },
+                plotOptions: {
+                    spline: {
+                        marker: {
+                            radius: 4,
+                            lineColor: '#666666',
+                            lineWidth: 1
+                        }
+                    }
+                },
+                series: [{
+                    name: '请假数',
+                    marker: {
+                        symbol: 'square'
+                    },
+                    data: total
+                }
+                ]
+            });
+        }
+        function pie(val) {
+
+            var datapie = [];
+            var total = val[0].JTOTAL;
+
+            for (var i = 0; i < val[0].JMM.length; i++) {
+
+                var ipie = +val[0].JMM[i] + "', " + val[0].JTOTAL[i];
+                datapie.push(ipie);
+            }
+            $('#pies').highcharts({
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false
+                },
+                title: {
+                    text: ''
+                },
+                tooltip: {
+                    formatter: function () {
+                        return this.point.name + '<br><b>占比</b>: '
+                            + Highcharts.numberFormat(this.percentage, 1) + '%<br><b>请假数量</b>: ' +
+                        Highcharts.numberFormat(this.y, 0, ',') + ' 件';
+                    }
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: false
+                        },
+                        showInLegend: true
+                    }
+                },
+                legend: {//控制图例显示位置
+                    layout: 'horizontal',
+                    align: 'center',
+                    verticalAlign: 'bottom',
+                    borderWidth: 0,
+                    x: 10,
+                    y: 20,
+                    width: 240
+                },
+                exporting: {
+                    enabled: false
+                }, credits: {
+                    enabled: false
+                },
+                series: [{
+                    type: 'pie',
+                    name: '占比',
+                    data: datapie
+                }]
+            });
+        }
+
+
+        function Prints() {
+            //获取grid 数据
+            var data = JSON.stringify($('#datagrid').datagrid('getData').rows);
+            //alert(data);
+            if (data == '')
+                return;
+            JSONToCSVConvertor(data, "请假汇总", true);
+        }
+        function JSONToCSVConvertor(JSONData, ReportTitle, ShowLabel) {
+            var CSV = '';
+            /*               Set Report title in first row or line  在第一集的行或行报告title */
+            CSV += ReportTitle + '\r\n\n';
+
+            /*              If JSONData is not an object then JSON.parse will parse the JSON string in an Object
+                            如果JSONData不是一个对象然后JSON.parse将解析对象中的JSON字符串  */
+            var arrData = typeof JSONData != 'object' ? JSON.parse(JSONData) : JSONData;
+
+            /*              This condition will generate the Label/Header
+                            这将产生的header label
+            */
+            if (ShowLabel) {
+                var row = "";
+                /*         This loop will extract the label from 1st index of on array
+                           这个循环将从数组的第一个索引中提取标签。 */
+                for (var index in arrData[0]) {
+
+                    /*              Now convert each value to string and comma-seprated
+                                    现在将每个值的字符串，用逗号分开   根据实际情况重新赋值 */
+                    if (index == "MM") {
+                        index = "统计月份";
+                    }
+                    if (index == "TOTAL") {
+                        index = "请假次数";
+                    }
+                    row += index + ',';
+                }
+
+                //截取对象内的数据。
+                row = row.slice(0, -1);
+
+                /*  append Label row with line breakappend Label row with line break
+                    附加带换行符的标签行  */
+                CSV += row + '\r\n';
+            }
+
+            //1st loop is to extract each row   开始遍历取数据
+            for (var i = 0; i < arrData.length; i++) {
+                var row = "";
+                /*              2nd loop will extract each column and convert it in string comma-seprated
+                                第二环路将提取每一列并将其转换成字符串逗号分开 */
+                for (var index in arrData[i]) {
+                    row += '"' + arrData[i][index] + '",';
+                }
+                row.slice(0, row.length - 1);
+                //add a line break after each row
+                CSV += row + '\r\n';
+            }
+
+            if (CSV == '') {
+                alert("Invalid data");
+                return;
+            }
+
+            //              Generate a file name    定义一个文件名一个文件名
+            var fileName = "";
+            //this will remove the blank-spaces from the title and replace it with an underscore
+            fileName += ReportTitle.replace(/ /g, "_");
+
+            // if browser is IE
+            if (window.navigator.msSaveOrOpenBlob) {
+                var csvContent = "\ufeff";
+                var uriie = csvContent + CSV;
+                var blob = new Blob([decodeURIComponent(encodeURI(uriie))], {
+                    type: "data:text/csv;charset=utf-8,"
+                });
+                navigator.msSaveBlob(blob, fileName + '.csv');
+            } else {
+                var csvContent = "data:text/csv;charset=utf-8,\ufeff";
+                var uriother = csvContent + CSV;
+                // 第一种实现
+                var encodedUri = encodeURI(uriother);
+                var link = document.createElement("a");
+                link.setAttribute("href", encodedUri);
+                link.setAttribute("download", fileName + ".csv");
+
+                document.body.appendChild(link);
+                link.click();
+
+                //var uri = 'data:text/csv;charset=utf-8,\ufeff' + encodeURI(CSV);
+
+                ////            Now the little tricky part.
+                ////            you can use either>> window.open(uri);
+                ////            but this will not work in some browsers
+                ////            or you will not get the correct file extension
+                ////           this trick will generate a temp <a /> tag   此技巧将生成一个临时标记
+                //var link = document.createElement("a");
+                //link.href = uri;
+                ////                set the visibility hidden so it will not effect on your web-layout
+                ////              设置可见性，这样它不会影响你的网页布局。
+                //link.style = "visibility:hidden";
+                //link.download = fileName + ".csv";
+
+                ////              this part will append the anchor tag and remove it after automatic click
+                ////              此部分将追加锚标记并在自动单击后删除它。
+                //document.body.appendChild(link);
+                //link.click();
+                //document.body.removeChild(link);
+            }
+        }
+
+        //导出明细数据
+        function Exp() {
+            //获取grid 数据
+             
+            var data = JSON.stringify($('#windowdatagrid').datagrid('getData').rows);
+            //alert(data);
+            if (data == '')
+                return;
+            detail(data, "请假明细", true);
+        }
+
+        function detail(JSONData, ReportTitle, ShowLabel) {
+            var CSV = '';
+            /*               Set Report title in first row or line  在第一集的行或行报告title */
+            CSV += ReportTitle + '\r\n\n';
+
+            /*              If JSONData is not an object then JSON.parse will parse the JSON string in an Object
+                            如果JSONData不是一个对象然后JSON.parse将解析对象中的JSON字符串  */
+            var arrData = typeof JSONData != 'object' ? JSON.parse(JSONData) : JSONData;
+
+            /*              This condition will generate the Label/Header
+                            这将产生的header label
+            */
+            if (ShowLabel) {
+                var row = "";
+                /*         This loop will extract the label from 1st index of on array
+                           这个循环将从数组的第一个索引中提取标签。 */
+                for (var index in arrData[0]) {
+
+                    /*              Now convert each value to string and comma-seprated
+                                    现在将每个值的字符串，用逗号分开   根据实际情况重新赋值 */
+                    if (index == "USERNAME") {
+                        index = "申请人";
+                    }
+                    if (index == "OLTYPE") { index = "假期类型"; }
+                    if (index == "OEXPLAIN") { index = "请假说明"; }
+                    if (index == "OLAPPLYSTARTDATE") { index = "请假开始时间"; }
+                    if (index == "OLAPPLYENDDATE") { index = "请假结束时间"; }
+                    if (index == "OLAPPLYDAYS") { index = "请假天数"; }
+                    if (index == "OLFINISHSTARTDATE") { index = "销假开始时间"; }
+                    if (index == "OLFINISHENDDATE") { index = "销假结束时间"; }
+                    if (index == "OLFINISHDAYS") { index = "销假天数"; }
+                    if (index == "OLONEEXPLAIN") { index = "室主任意见"; }
+                    if (index == "OLTWOEXPLAIN") { index = "副局长意见"; }
+                    if (index == "OLTHREEEXPLAIN") { index = "局长意见"; }
+                    row += index + ',';
+                }
+
+                //截取对象内的数据。
+                row = row.slice(0, -1);
+
+                /*  append Label row with line breakappend Label row with line break
+                    附加带换行符的标签行  */
+                CSV += row + '\r\n';
+            }
+
+            //1st loop is to extract each row   开始遍历取数据
+            for (var i = 0; i < arrData.length; i++) {
+                var row = "";
+                /*              2nd loop will extract each column and convert it in string comma-seprated
+                                第二环路将提取每一列并将其转换成字符串逗号分开 */
+                for (var index in arrData[i]) {
+                    row += '"' + arrData[i][index] + '",';
+                }
+                row.slice(0, row.length - 1);
+                //add a line break after each row
+                CSV += row + '\r\n';
+            }
+
+            if (CSV == '') {
+                alert("Invalid data");
+                return;
+            }
+
+            //              Generate a file name    定义一个文件名一个文件名
+            var fileName = "";
+            //this will remove the blank-spaces from the title and replace it with an underscore
+            fileName += ReportTitle.replace(/ /g, "_");
+
+            // if browser is IE
+            if (window.navigator.msSaveOrOpenBlob) {
+                var csvContent = "\ufeff";
+                var uriie = csvContent + CSV;
+                var blob = new Blob([decodeURIComponent(encodeURI(uriie))], {
+                    type: "data:text/csv;charset=utf-8,"
+                });
+                navigator.msSaveBlob(blob, fileName + '.csv');
+            } else {
+                var csvContent = "data:text/csv;charset=utf-8,\ufeff";
+                var uriother = csvContent + CSV;
+                // 第一种实现
+                var encodedUri = encodeURI(uriother);
+                var link = document.createElement("a");
+                link.setAttribute("href", encodedUri);
+                link.setAttribute("download", fileName + ".csv");
+
+                document.body.appendChild(link);
+                link.click();
+
+            }
+        }
+
+
+    </script>
+</head>
+<body>
+    <div style="float: left; width: 100%; text-align: left" class="search-condition-font">
+        &nbsp;&nbsp;
+        日期:
+        <input class="easyui-datebox" id="BTIME"
+               style="width: 110px" data-options="editable:false,required:true" />
+        至:
+        <input class="easyui-datebox" id="ETIME"
+               style="width: 110px" data-options="editable:false,required:true" />
+
+        &nbsp;&nbsp;类&nbsp;&nbsp;&nbsp;&nbsp;型:&nbsp;
+        <select class="easyui-combobox" id="HYS" name="HYS" style="width: 150px;" data-options="required:true,panelHeight:'220px',panelWidth:'150px'">
+            <option selected="selected" value="全部">全部</option>
+            <option value="事假">事假</option>
+            <option value="病假">病假</option>
+            <option value="婚假">婚假</option>
+            <option value="产假">产假</option>
+            <option value="探亲假">探亲假</option>
+            <option value="公假">公假</option>
+            <option value="年休假">年休假</option>
+            <option value="丧假">丧假</option>
+            <option value="工伤假">工伤假</option>
+        </select>
+        <a href="#" id="btnSearch" name="btn" class="btnSearch" data-options="iconCls:'icon-search'"
+           onclick="Search()">
+            &nbsp;查&nbsp;询&nbsp;&nbsp;
+        </a>
+        <a href="#" id="btnSearch" name="btn" class="btnSearch" data-options="iconCls:'icon-search'"
+           onclick="Prints()">
+            &nbsp;报&nbsp;表&nbsp;&nbsp;
+        </a>
+        <span style="width: 20px">&nbsp;&nbsp;</span>
+    </div>
+    <div>
+        <br />
+    </div>
+    <!--图标显示查询结果-样能权有偿交易规则-->
+    <div title="统计数据" style="position: absolute; top: 50px; left: 3px; right: 3px; height:55%">
+        <table id="datagrid" style="width: 100%;" fit="true" class="easyui-datagrid">
+            <thead>
+                <tr>
+                    <th rowspan="1" field="MM" width="45%" align="center">统计月份</th>
+                    <th rowspan="1" field="TOTAL" width="45%" align="center">请假次数</th>
+                    <th rowspan="1" field="YF" width="1%" align="center" hidden="hidden">YF</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <div title="" style="position: absolute;left: 3px; right: 3px; bottom: 3px;height:30%">
+        <div id="lines" style="width:98%;"></div>
+        <!--<div id="pies" style="width:49%;"></div>-->
+    </div>
+
+    <div id="w" class="easyui-window" title="详细信息" data-options="minimizable:false,tools:'#tt'">
+        <table id="windowdatagrid" style="width: 100%;" fit="true" class="easyui-datagrid">
+            <thead>
+                <tr>
+                    <th rowspan="1" field="USERNAME" width="15%" align="center">申请人</th>
+                    <th rowspan="1" field="OLTYPE" width="40%" align="center">假期类型</th>
+                    <th rowspan="1" field="OEXPLAIN" width="15%" align="center">请假说明</th>
+                    <th rowspan="1" field="OLAPPLYSTARTDATE" width="40%" align="center">请假开始时间</th>
+                    <th rowspan="1" field="OLAPPLYENDDATE" width="15%" align="center">请假结束时间</th>
+                    <th rowspan="1" field="OLAPPLYDAYS" width="40%" align="center">请假天数</th>
+                    <th rowspan="1" field="OLFINISHSTARTDATE" width="40%" align="center">销假开始时间</th>
+                    <th rowspan="1" field="OLFINISHENDDATE" width="15%" align="center">销假结束时间</th>
+                    <th rowspan="1" field="OLFINISHDAYS" width="40%" align="center">销假天数</th>
+                    <th rowspan="1" field="OLONEEXPLAIN" width="15%" align="center">室主任意见</th>
+                    <th rowspan="1" field="OLTWOEXPLAIN" width="40%" align="center">副局长意见</th>
+                    <th rowspan="1" field="OLTHREEEXPLAIN" width="40%" align="center">局长意见</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <div id="tt">
+        <a href="javascript:void(0)" onclick="Exp()" class="icon-print" style="" title="导出"></a>
+    </div>
+</body>
+</html>

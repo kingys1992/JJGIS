@@ -1,0 +1,13 @@
+C:\HNHB_Solution\HNHB_Solution\OpHelp\bin\Debug\OpHelp.dll.config
+C:\HNHB_Solution\HNHB_Solution\OpHelp\bin\Debug\OpHelp.dll
+C:\HNHB_Solution\HNHB_Solution\OpHelp\bin\Debug\OpHelp.pdb
+C:\HNHB_Solution\HNHB_Solution\OpHelp\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.Min.dll
+C:\HNHB_Solution\HNHB_Solution\OpHelp\obj\Debug\OpHelp.dll
+C:\HNHB_Solution\HNHB_Solution\OpHelp\obj\Debug\OpHelp.pdb
+D:\省节能平台\HNHB_Solution\OpHelp\bin\Debug\OpHelp.dll.config
+D:\省节能平台\HNHB_Solution\OpHelp\bin\Debug\OpHelp.dll
+D:\省节能平台\HNHB_Solution\OpHelp\bin\Debug\OpHelp.pdb
+D:\省节能平台\HNHB_Solution\OpHelp\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.Min.dll
+D:\省节能平台\HNHB_Solution\OpHelp\obj\Debug\OpHelp.csprojResolveAssemblyReference.cache
+D:\省节能平台\HNHB_Solution\OpHelp\obj\Debug\OpHelp.dll
+D:\省节能平台\HNHB_Solution\OpHelp\obj\Debug\OpHelp.pdb

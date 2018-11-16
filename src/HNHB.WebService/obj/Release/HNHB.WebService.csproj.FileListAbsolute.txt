@@ -1,0 +1,8 @@
+D:\code1\HNHBCode\HNHB_Solution\src\HNHB.WebService\bin\Release\HNHB.WebService.dll
+D:\code1\HNHBCode\HNHB_Solution\src\HNHB.WebService\bin\Release\HNHB.WebService.pdb
+D:\code1\HNHBCode\HNHB_Solution\src\HNHB.WebService\obj\Release\HNHB.WebService.csprojResolveAssemblyReference.cache
+D:\code1\HNHBCode\HNHB_Solution\src\HNHB.WebService\obj\Release\HNHB.WebService.dll
+D:\code1\HNHBCode\HNHB_Solution\src\HNHB.WebService\obj\Release\HNHB.WebService.pdb
+C:\HNHB_Solution\HNHB_Solution\src\HNHB.WebService\obj\Release\HNHB.WebService.csprojFakesResolveAssemblyReference.cache
+D:\省节能平台\HNHB_Solution\src\HNHB.WebService\obj\Release\HNHB.WebService.csprojFakesResolveAssemblyReference.cache
+D:\省节能平台\HNHB_Solution\src\HNHB.WebService\obj\Release\HNHB.WebService.csprojResolveAssemblyReference.cache

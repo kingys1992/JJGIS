@@ -1,0 +1,132 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F89A417C-B638-47FA-BC00-5504122CEBBE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B45C0093-0518-4BA3-8B07-0551A46B7F73}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JNJC.Model", "src\HNHB.Model\JNJC.Model.csproj", "{688B11FE-A48C-4DDB-A86E-7AF5C95D2797}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JNJC.BLL", "src\HNHB.BLL\JNJC.BLL.csproj", "{1F8FCD54-D6BC-408A-AF52-6DBA6AE70315}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JNJC.WebService", "src\HNHB.WebService\JNJC.WebService.csproj", "{EBF03350-9222-466F-AE4E-AFC068879CAC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JNJC.Utility", "src\JNJC.Utility\JNJC.Utility.csproj", "{2E64809C-2ED0-4625-9356-370CBA88EE26}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "test", "http://localhost/test", "{855EC7F3-1F5A-44C2-A27B-333AD98B46C3}"
+	ProjectSection(WebsiteProperties) = preProject
+		SccProjectName = "SAK"
+		SccAuxPath = "SAK"
+		SccLocalPath = "SAK"
+		SccProvider = "SAK"
+		UseIISExpress = "false"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
+		ProjectReferences = "{1f8fcd54-d6bc-408a-af52-6dba6ae70315}|JNJC.BLL.dll;{688B11FE-A48C-4DDB-A86E-7AF5C95D2797}|JNJC.Model.dll;{2E64809C-2ED0-4625-9356-370CBA88EE26}|JNJC.Utility.dll;"
+		Debug.AspNetCompiler.VirtualPath = "/test"
+		Debug.AspNetCompiler.PhysicalPath = "WebSite\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\test\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/test"
+		Release.AspNetCompiler.PhysicalPath = "WebSite\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\test\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		SlnRelativePath = "WebSite\"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{688B11FE-A48C-4DDB-A86E-7AF5C95D2797}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{688B11FE-A48C-4DDB-A86E-7AF5C95D2797}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{688B11FE-A48C-4DDB-A86E-7AF5C95D2797}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{688B11FE-A48C-4DDB-A86E-7AF5C95D2797}.Debug|x86.Build.0 = Debug|Any CPU
+		{688B11FE-A48C-4DDB-A86E-7AF5C95D2797}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{688B11FE-A48C-4DDB-A86E-7AF5C95D2797}.Release|Any CPU.Build.0 = Release|Any CPU
+		{688B11FE-A48C-4DDB-A86E-7AF5C95D2797}.Release|x86.ActiveCfg = Release|Any CPU
+		{688B11FE-A48C-4DDB-A86E-7AF5C95D2797}.Release|x86.Build.0 = Release|Any CPU
+		{1F8FCD54-D6BC-408A-AF52-6DBA6AE70315}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F8FCD54-D6BC-408A-AF52-6DBA6AE70315}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F8FCD54-D6BC-408A-AF52-6DBA6AE70315}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{1F8FCD54-D6BC-408A-AF52-6DBA6AE70315}.Debug|x86.Build.0 = Debug|Any CPU
+		{1F8FCD54-D6BC-408A-AF52-6DBA6AE70315}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F8FCD54-D6BC-408A-AF52-6DBA6AE70315}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F8FCD54-D6BC-408A-AF52-6DBA6AE70315}.Release|x86.ActiveCfg = Release|Any CPU
+		{1F8FCD54-D6BC-408A-AF52-6DBA6AE70315}.Release|x86.Build.0 = Release|Any CPU
+		{EBF03350-9222-466F-AE4E-AFC068879CAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBF03350-9222-466F-AE4E-AFC068879CAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBF03350-9222-466F-AE4E-AFC068879CAC}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{EBF03350-9222-466F-AE4E-AFC068879CAC}.Debug|x86.Build.0 = Debug|Any CPU
+		{EBF03350-9222-466F-AE4E-AFC068879CAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBF03350-9222-466F-AE4E-AFC068879CAC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EBF03350-9222-466F-AE4E-AFC068879CAC}.Release|x86.ActiveCfg = Release|Any CPU
+		{EBF03350-9222-466F-AE4E-AFC068879CAC}.Release|x86.Build.0 = Release|Any CPU
+		{2E64809C-2ED0-4625-9356-370CBA88EE26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E64809C-2ED0-4625-9356-370CBA88EE26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E64809C-2ED0-4625-9356-370CBA88EE26}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{2E64809C-2ED0-4625-9356-370CBA88EE26}.Debug|x86.Build.0 = Debug|Any CPU
+		{2E64809C-2ED0-4625-9356-370CBA88EE26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E64809C-2ED0-4625-9356-370CBA88EE26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E64809C-2ED0-4625-9356-370CBA88EE26}.Release|x86.ActiveCfg = Release|Any CPU
+		{2E64809C-2ED0-4625-9356-370CBA88EE26}.Release|x86.Build.0 = Release|Any CPU
+		{855EC7F3-1F5A-44C2-A27B-333AD98B46C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{855EC7F3-1F5A-44C2-A27B-333AD98B46C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{855EC7F3-1F5A-44C2-A27B-333AD98B46C3}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{855EC7F3-1F5A-44C2-A27B-333AD98B46C3}.Debug|x86.Build.0 = Debug|Any CPU
+		{855EC7F3-1F5A-44C2-A27B-333AD98B46C3}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{855EC7F3-1F5A-44C2-A27B-333AD98B46C3}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{855EC7F3-1F5A-44C2-A27B-333AD98B46C3}.Release|x86.ActiveCfg = Debug|Any CPU
+		{855EC7F3-1F5A-44C2-A27B-333AD98B46C3}.Release|x86.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{688B11FE-A48C-4DDB-A86E-7AF5C95D2797} = {F89A417C-B638-47FA-BC00-5504122CEBBE}
+		{1F8FCD54-D6BC-408A-AF52-6DBA6AE70315} = {F89A417C-B638-47FA-BC00-5504122CEBBE}
+		{EBF03350-9222-466F-AE4E-AFC068879CAC} = {F89A417C-B638-47FA-BC00-5504122CEBBE}
+		{2E64809C-2ED0-4625-9356-370CBA88EE26} = {F89A417C-B638-47FA-BC00-5504122CEBBE}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 6
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://darin1992.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = src\\HNHB.BLL\\JNJC.BLL.csproj
+		SccProjectTopLevelParentUniqueName1 = Log4Net.sln
+		SccProjectName1 = MyFirstProject/Log4Net/src/HNHB.BLL
+		SccLocalPath1 = src\\HNHB.BLL
+		SccProjectUniqueName2 = src\\HNHB.Model\\JNJC.Model.csproj
+		SccProjectTopLevelParentUniqueName2 = Log4Net.sln
+		SccProjectName2 = MyFirstProject/Log4Net/src/HNHB.Model
+		SccLocalPath2 = src\\HNHB.Model
+		SccProjectUniqueName3 = src\\HNHB.WebService\\JNJC.WebService.csproj
+		SccProjectTopLevelParentUniqueName3 = Log4Net.sln
+		SccProjectName3 = MyFirstProject/Log4Net/src/HNHB.WebService
+		SccLocalPath3 = src\\HNHB.WebService
+		SccProjectUniqueName4 = src\\JNJC.Utility\\JNJC.Utility.csproj
+		SccProjectTopLevelParentUniqueName4 = Log4Net.sln
+		SccProjectName4 = MyFirstProject/Log4Net/src/JNJC.Utility
+		SccLocalPath4 = src\\JNJC.Utility
+		SccWebProject5 = true
+		SccProjectUniqueName5 = http://localhost/test
+		SccProjectName5 = MyFirstProject/Log4Net/WebSite
+		SccLocalPath5 = WebSite
+		SccProjectEnlistmentChoice5 = 2
+	EndGlobalSection
+EndGlobal

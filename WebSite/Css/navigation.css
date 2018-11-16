@@ -1,0 +1,35 @@
+﻿body {
+    width:100%;
+    height:100%;
+    margin:0;
+    padding:0;
+    font-family:'Microsoft YaHei';
+    font-size:16px;
+    font-weight:600;
+}
+.navigationNull{
+    height:1px;
+    width:100%;
+}
+.navigationBar{
+    height:36px;
+    /*width:100%;*/
+    /*margin-top:4px;*/
+    cursor:pointer;
+    background:#c6c6c6;
+    border-left:1px solid #FFF;
+    border-right:1px solid #FFF;
+    border-bottom:1px solid #FFF;
+}
+.navigationBar .navigationBarImg{
+    float:left;
+    margin:5px;
+    width:26px;
+    height:26px;
+}
+.navigationBar .navigationBarText{
+    margin-left:36px;
+    margin-right:5px;
+    height:100%;
+    line-height:36px;
+}

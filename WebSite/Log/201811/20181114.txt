@@ -1,0 +1,81 @@
+==== 2018-11-14 11:28:56,236 [86] INFO  ==== : 
+11111111111
+
+==== 2018-11-14 14:31:19,233 [7] INFO  ==== : 
+11111111111
+
+==== 2018-11-14 14:31:19,233 [7] INFO  ==== : 
+11111111111
+
+==== 2018-11-14 14:33:36,861 [9] INFO  ==== : 
+11111111111
+
+==== 2018-11-14 14:33:36,861 [9] INFO  ==== : 
+11111111111
+
+==== 2018-11-14 16:33:50,339 [56] INFO  ==== : 
+wwwww
+
+==== 2018-11-14 16:33:50,339 [56] INFO  ==== : 
+wwwww
+
+==== 2018-11-14 16:48:49,072 [62] INFO  ==== : 
+wwwww
+
+==== 2018-11-14 16:48:49,072 [62] INFO  ==== : 
+wwwww
+
+==== 2018-11-14 16:50:46,102 [62] INFO  ==== : 
+wwwww
+
+==== 2018-11-14 16:50:46,102 [62] INFO  ==== : 
+wwwww
+
+==== 2018-11-14 16:50:53,400 [62] ERROR ==== : 
+用能权交易规则-增加信息！ ||System.InvalidOperationException: OracleCommand.CommandText 无效
+   在 Oracle.ManagedDataAccess.Client.OracleCommand.DoPreExecuteProcessing(OracleDependencyImpl orclDependencyImpl)
+   在 Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteNonQuery()
+   在 Log4Net.ExecuteNonQuery() 位置 d:\test\04-.NETPROJECT\JNJC_Solution\WebSite\ashx\Log4Net.ashx:行号 101
+
+==== 2018-11-14 16:50:53,400 [62] ERROR ==== : 
+用能权交易规则-增加信息！ ||System.InvalidOperationException: OracleCommand.CommandText 无效
+   在 Oracle.ManagedDataAccess.Client.OracleCommand.DoPreExecuteProcessing(OracleDependencyImpl orclDependencyImpl)
+   在 Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteNonQuery()
+   在 Log4Net.ExecuteNonQuery() 位置 d:\test\04-.NETPROJECT\JNJC_Solution\WebSite\ashx\Log4Net.ashx:行号 101
+
+==== 2018-11-14 17:03:57,532 [77] INFO  ==== : 
+wwwww
+
+==== 2018-11-14 17:03:57,532 [77] INFO  ==== : 
+wwwww
+
+==== 2018-11-14 17:04:00,903 [77] ERROR ==== : 
+用能权交易规则-增加信息！ ||System.InvalidOperationException: OracleCommand.CommandText 无效
+   在 Oracle.ManagedDataAccess.Client.OracleCommand.DoPreExecuteProcessing(OracleDependencyImpl orclDependencyImpl)
+   在 Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteNonQuery()
+   在 Log4Net.ExecuteNonQuery() 位置 d:\test\04-.NETPROJECT\JNJC_Solution\WebSite\ashx\Log4Net.ashx:行号 101
+
+==== 2018-11-14 17:04:00,903 [77] ERROR ==== : 
+用能权交易规则-增加信息！ ||System.InvalidOperationException: OracleCommand.CommandText 无效
+   在 Oracle.ManagedDataAccess.Client.OracleCommand.DoPreExecuteProcessing(OracleDependencyImpl orclDependencyImpl)
+   在 Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteNonQuery()
+   在 Log4Net.ExecuteNonQuery() 位置 d:\test\04-.NETPROJECT\JNJC_Solution\WebSite\ashx\Log4Net.ashx:行号 101
+
+==== 2018-11-14 17:06:29,226 [76] INFO  ==== : 
+wwwww
+
+==== 2018-11-14 17:06:29,226 [76] INFO  ==== : 
+wwwww
+
+==== 2018-11-14 17:08:32,623 [76] ERROR ==== : 
+用能权交易规则-增加信息！ ||System.InvalidOperationException: OracleCommand.CommandText 无效
+   在 Oracle.ManagedDataAccess.Client.OracleCommand.DoPreExecuteProcessing(OracleDependencyImpl orclDependencyImpl)
+   在 Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteNonQuery()
+   在 Log4Net.ExecuteNonQuery() 位置 d:\test\04-.NETPROJECT\JNJC_Solution\WebSite\ashx\Log4Net.ashx:行号 101
+
+==== 2018-11-14 17:08:32,623 [76] ERROR ==== : 
+用能权交易规则-增加信息！ ||System.InvalidOperationException: OracleCommand.CommandText 无效
+   在 Oracle.ManagedDataAccess.Client.OracleCommand.DoPreExecuteProcessing(OracleDependencyImpl orclDependencyImpl)
+   在 Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteNonQuery()
+   在 Log4Net.ExecuteNonQuery() 位置 d:\test\04-.NETPROJECT\JNJC_Solution\WebSite\ashx\Log4Net.ashx:行号 101
+

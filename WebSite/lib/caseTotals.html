@@ -1,0 +1,945 @@
+﻿<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>无标题文档</title>
+    <link href="../Css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="../Css/sjnpt-portal.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="http://123.160.220.47:5001/arcgis_js_api/library/3.16/3.16/dijit/themes/tundra/tundra.css" />
+    <link rel="stylesheet" type="text/css" href="http://123.160.220.47:5001/arcgis_js_api/library/3.16/3.16/esri/css/esri.css" />
+    <script type="text/javascript" src="http://123.160.220.47:5001/arcgis_js_api/library/3.16/3.16/init.js"></script>
+    <script src="../Script/jquery-1.11.1.min.js"></script>
+    <script src="../Script/hcharts/highcharts.js"></script>
+    <script src="../Script/hcharts/exporting.js"></script>
+    <script src="../Script/hcharts/highcharts-zh_CN.js"></script>
+    <script src="../Script/jquery-json.js"></script>
+    <link href="../Css/mapShow.css" rel="stylesheet" />
+    <script type="text/javascript">
+        var chart; //图形对象
+        var shiList;       //地市级数据
+        var xianList;      //区县级数据
+        var cityno;          //县区级代码，行政区划代号
+        var citycode;          //县区级代码，拼音缩写
+        var dialog;                   //窗体
+        var dialogs;                   //窗体
+        var graphictype = "zzs";        // 是否显示市图层
+
+        //初始化加载地图，各地市在线监测数据
+        $(document).ready(function () {
+            //初始化加载地图
+            //pie_jcjd();  //坐上1  扇形图
+            //pie_ajfl();   //右上1  扇形图
+            //line_yfjc();    //中间 曲线图
+            //column_jczl();  //中间偏下 监察总量  柱状图
+            Search();
+            //collin_charts();   //底部 各地市监察总量  柱状图曲线图混合
+            //初始化加载地图
+            initMap();
+        });
+
+        //***********************************************地市行政区域渲染*************************************************//
+        var mapMain = null;
+        var mapDraw;
+        var mapDraws;
+        var gLayer;
+        var gLayers;
+        var gpTask;
+        var legend;
+        var timeOut1;
+        var timeOut2;
+        var templates;
+        var template;
+        //Time：2017年8月10日10:18:13  Programmer:whl  Content:根据年限查询事件
+        function Search() {
+            var fixeyear = $("#txtKhnf").val();
+            $.ajax({
+                type: "post",
+                contentType: "application/json",
+                url: "../ashx/INSPECT/getSurveyCase.ashx?FixeYear=" + fixeyear,
+                dataType: "json",
+                success: function (result) {
+                    var result = eval(result);
+                   //  
+                    document.getElementById("jczl").innerHTML = result[0].JCASENUMBER[3];
+                    document.getElementById("jcwc").innerHTML = result[0].JCASENUMBER[2];
+                    document.getElementById("jcclz").innerHTML = result[0].JCASENUMBER[1];
+                    document.getElementById("jcwcl").innerHTML = result[0].JCASENUMBER[0];
+                    pie_ajfl(result);
+                }
+            });
+            $.ajax({
+                type: "post",
+                contentType: "application/json",
+                url: "../ashx/INSPECT/getSurveyCaseSource.ashx?FixeYear=" + fixeyear,
+                dataType: "json",
+                success: function (result) {
+                    var result = eval(result);
+                   //  
+                    pie_jcjd(result);
+                }
+            });
+            $.ajax({
+                type: "post",
+                contentType: "application/json",
+                url: "../ashx/INSPECT/getSurveyCaseMonth.ashx?FixeYear=" + fixeyear,
+                dataType: "json",
+                success: function (result) {
+                    var result = eval(result);
+                    line_yfjc(result);
+                }
+            });
+            $.ajax({
+                type: "post",
+                contentType: "application/json",
+                url: "../ashx/INSPECT/getSurveyCaseSourceJ.ashx?FixeYear=" + fixeyear,
+                dataType: "json",
+                success: function (result) {
+                    var result = eval(result);
+                }
+            });
+            $.ajax({
+                type: "post",
+                contentType: "application/json",
+                url: "../ashx/INSPECT/getSurveyCaseCity.ashx?FixeYear=" + fixeyear,
+                dataType: "json",
+                success: function (result) {
+                    var result = eval(result);
+                   //  
+                    collin_charts(result);
+                    shiList = result;
+                    queryTaskDischarge();//插值
+                }
+            });
+
+
+        };
+
+        //初始化地图--王岩松  2017年7月26日09:14:25
+        function initMap() {
+            require([
+            "esri/map",
+            "esri/layers/ArcGISTiledMapServiceLayer",
+            "esri/layers/ArcGISDynamicMapServiceLayer",
+            "esri/geometry/Extent",
+            "esri/toolbars/navigation",
+            "dojo/_base/connect",
+            "dijit/registry",
+            "esri/dijit/Scalebar",
+            "dojo",
+            "esri/tasks/Geoprocessor",
+            "dojo/number",
+            "dijit/TooltipDialog",
+            "dojo/domReady!"],
+            function (Map, Tiled, Dynamic, Extent, Navigation, connect, registry, Scalebar, dojo, Geoprocessor, TooltipDialog) {
+                var oExtent = new Extent({
+                    "xmin": 1.2284604854314974E7, "ymin": 3682981.621263018, "xmax": 1.2984786306327667E7, "ymax": 4350530.572565798, "spatialReference": { wkid: 3857 }
+                });
+
+                //设置地图MAP 对象属性方法；
+                mapDraw = new Map("shi_map_show", {
+                    slider: false,
+                    logo: false,
+                    showLabels: false,
+                    autoResize: true
+                });
+                mapDraw.setExtent(oExtent);                                         //设置显示区域范围
+                dojo.connect(mapDraw, "onResize", mapDrawResize);                  //onResize 窗口或框架被调整大小时发生改变事件
+
+                //调用服务地址,河南省基础地图
+                var agoServiceURL1 = "http://123.160.220.47:6080/arcgis/rest/services/Vector/HENAN_VECTOR/MapServer";
+                var boLayer2 = new Dynamic(agoServiceURL1, { id: "baseLayer" });
+                mapDraw.addLayer(boLayer2);
+                var scaleBar2 = new Scalebar({
+                    map: mapDraw,
+                    attachTo: "top-left",
+                    scalebarStyle: "line",
+                    scalebarUnit: "metric"
+                });
+                //onResize 窗口或框架被调整大小时发生改变，地图位置大小随之改变
+                function mapDrawResize(extent) {
+                    timeOut2 = window.setTimeout(function () {
+                        var xExtent = new Extent({
+                            "xmin": 1.2284604854314974E7, "ymin": 3682981.621263018, "xmax": 1.2984786306327667E7, "ymax": 4350530.572565798, "spatialReference": { wkid: 3857 }
+                        });
+                        mapDraw.setExtent(xExtent);
+                        if (mapDraw.getLayer("textLayer")) {
+                            var symbol = new esri.symbol.TextSymbol().setColor(
+                                        new esri.Color([26, 26, 26])).setAlign(esri.symbol.Font.ALIGN_START).setAngle(0).setFont(
+                                        new esri.symbol.Font("8pt").setWeight(esri.symbol.Font.WEIGHT_BOLD));
+                            symbol.setHaloColor(new esri.Color([234, 234, 234])).setHaloSize(1);
+                            var json = {
+                                "labelExpressionInfo": { "value": "{NAME}" }
+                            };
+                            var labelClass = new esri.layers.LabelClass(json);
+                            labelClass.symbol = symbol;
+                            mapDraw.getLayer("textLayer").setLabelingInfo([labelClass]);
+                        }
+                        window.clearTimeout(timeOut2);
+                    }, 150);
+                }
+            });
+        }
+
+        //根据调用的地图服务和查询到的数据，渲染到地图上--王岩松 2017年7月26日09:14:52
+        function queryTaskDischarge() {
+            var coQueryTask = new esri.tasks.QueryTask("http://123.160.220.47:6080/arcgis/rest/services/Vector/SHIXIAN_VECTOR/MapServer/0/");
+            var coQuery = new esri.tasks.Query();
+            coQuery.outFields = ["*"];
+            coQuery.returnGeometry = true;
+            coQuery.outSpatialReference = mapDraw.spatialReference;
+            coQuery.where = "1=1";
+            coQuery.orderByFields = ["CODE"];
+            coQueryTask.execute(coQuery, ShowQueryResult1);//监听execute事件的处理结果
+            ShowQueryResult2();
+        }
+
+        //执行事件---查询相关的数值，并进行处理。
+        function ShowQueryResult1(featureSet) {
+            var lj;
+            var zzl;
+            for (var i = 0; i < featureSet.features.length; i++) {
+                for (var j = 0; j < shiList[0].JCITYCODE.length; j++) {
+                    var code = parseInt(shiList[0].JCITYCODE[j]) * 100000;
+                    if (code == featureSet.features[i].attributes.CODE) {
+                        featureSet.features[i].attributes.TOTAL = shiList[0].JALLCASE[j];//将后台传来的案件数赋值到属性上
+                        featureSet.features[i].attributes.KIND = shiList[0].JRATE[j];//将后台传来的案件达标率赋值到属性上
+                    }
+                }
+            }
+            //当gLayer 渲染图层存在时，移除
+            if (gLayer) {
+                mapDraw.removeLayer(gLayer);
+            }
+
+            gLayer = new esri.layers.GraphicsLayer();                //新建展示图层
+            mapDraw.addLayer(gLayer);            //添加图层
+            dojo.forEach(featureSet.features, function (feature) {
+                var total = feature.attributes.TOTAL;
+                var symbol = setSymbolsToMap(total);       //图层调用渲染方法
+                gLayer.add(feature.setSymbol(symbol));
+            });
+
+            mapDraw.infoWindow.resize(160, 120);// 设置信息框的大小
+            dialog = new dijit.TooltipDialog({
+                id: "tooltipDialog",
+                style: "position: absolute; width: 160px; font: normal normal normal 10pt Helvetica;z-index:100"
+            });             // 设置信息框的属性
+            dialog.startup();           // 开启
+
+            // 高亮线
+            var highlightSymbol = new esri.symbol.SimpleFillSymbol(
+                esri.symbol.SimpleFillSymbol.STYLE_SOLID,
+                new esri.symbol.SimpleLineSymbol(
+                    esri.symbol.SimpleLineSymbol.STYLE_SOLID,
+                    new dojo.Color([255, 0, 0]),
+                    3
+                ),
+                new dojo.Color([125, 125, 125, 0.5])
+            );
+
+            //注册鼠标离开监听事件 当鼠标离开的高亮图形，关闭对话框
+            dojo.connect(mapDraw, "onMouseOut", function (evt) {
+                if (evt.graphic != undefined && evt.graphic.attributes != undefined) {
+
+                    if (graphictype != evt.graphic.attributes.CITYCODE) {
+                        graphictype = evt.graphic.attributes.CITYCODE;
+                        mapDraw.graphics.clear();           // 清除图形
+                        dijit.popup.close(dialog);          // 关闭弹出框
+                    }
+                } else {
+                    mapDraw.graphics.clear();               // 清除图形
+                    dijit.popup.close(dialog);              // 关闭弹出框
+                }
+            });
+
+            // 注册鼠标移入监听事件 当鼠标移入的高亮图形。
+            dojo.connect(mapDraw, "onMouseOver", function (evt) {
+                if (evt.graphic != undefined && evt.graphic.attributes != undefined) {
+                    cityno = evt.graphic.attributes.CODE;
+                    citycode = evt.graphic.attributes.CITYCODE;
+                    var sum = "案件数量：（" + evt.graphic.attributes.TOTAL + "件）<br/>"
+                                 + "达标率：（" + evt.graphic.attributes.KIND + "%）<br/>";
+                   
+
+                    document.getElementById('gis-head').innerHTML = evt.graphic.attributes.NAME + "案件数量信息";
+                    document.getElementById('gis-content').innerHTML = sum;
+
+                    if (evt.graphic.attributes.TOTAL == undefined) {
+                        var t = "&nbsp;<b>${NAME}</b><hr><b>&nbsp;&nbsp;案件数:&nbsp;&nbsp; </b>-<br/>";
+                        document.getElementById('gis-content').innerHTML = "";
+
+                    } else {
+                        var t = "&nbsp;<b>${NAME}</b><hr><b>&nbsp;&nbsp;案件数:&nbsp;&nbsp; </b>${TOTAL}<br/>"
+                                           + "<b>  </b><br/> ";
+                    }
+                    // dojo.string.substitute(),可以处理通配符形式
+                    var content = esri.substitute(evt.graphic.attributes, t);
+                    var highlightGraphic = new esri.Graphic(
+                          evt.graphic.geometry,
+                          highlightSymbol
+                    );
+                    mapDraw.graphics.add(highlightGraphic);     // 将图标加入图形中
+                    dialog.setContent(content);                 // 设置弹窗内容
+                    dojo.style(dialog.domNode, "opacity", 0.9);     // 透明度
+                    dijit.popup.open({ popup: dialog, x: evt.pageX, y: evt.pageY });// 弹出位置
+                }
+            });
+
+            //dojo.connect(mapDraw, "onClick", function (evt) {
+            //    mapDraw.graphics.clear();               // 清除图形
+            //    dijit.popup.close(dialog);              // 关闭弹出框
+
+            //    alert("鼠标点击事件");
+
+            //});          //onMouseDown    改变事件 鼠标点击事件
+            //dojo.connect(mapDraw, "onDBlClick", details);          //onMouseDown    改变事件 鼠标点击事件
+        }
+
+        function ShowQueryResult2() {
+
+            if (mapDraw.getLayer("textLayer")) {
+                return;
+            }
+            var statesColor = new esri.Color("#E1FFFF");
+            var statesLine = new esri.symbol.SimpleLineSymbol("solid", statesColor, 1);
+            var statesSymbol = new esri.symbol.SimpleFillSymbol("solid", statesLine, null);
+            var statesRenderer = new esri.renderer.SimpleRenderer(statesSymbol);
+            //var txtLayer = new esri.layer.LabelLayer({id:"textLayer"});
+            var txtLayer = new esri.layers.FeatureLayer(
+                "http://123.160.220.47:6080/arcgis/rest/services/Vector/SHIXIAN_VECTOR/MapServer/0/",
+                {
+                    id: "textLayer",
+                    outFields: ["*"]
+                }
+              );
+            txtLayer.setRenderer(statesRenderer);
+            var symbol = new esri.symbol.TextSymbol().setColor(
+                        new esri.Color([26, 26, 26])).setAlign(esri.symbol.Font.ALIGN_START).setAngle(0).setFont(
+                        new esri.symbol.Font("8pt").setWeight(esri.symbol.Font.WEIGHT_BOLD));
+            symbol.setHaloColor(new esri.Color([225, 255, 255])).setHaloSize(1);
+            var json = {
+                "labelExpressionInfo": { "value": "{NAME}" }
+            };
+
+            var labelClass = new esri.layers.LabelClass(json);
+            labelClass.symbol = symbol;
+            txtLayer.setLabelingInfo([labelClass]);
+            mapDraw.addLayer(txtLayer);
+        }
+
+        //图例
+        function setSymbolsToMap(own) {
+            var symbol = new esri.symbol.SimpleFillSymbol();
+            symbol.setOutline(new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID,
+            new esri.Color([105, 105, 105, 1.0]), 1.0));
+            var op = 0.85;//渲染透明度
+
+            if (own > 50) {
+                symbol.setColor(new esri.Color([255, 255, 0, op]));
+            }
+            else if (own > 10 && own <= 50) {
+                symbol.setColor(new esri.Color([173, 255, 47, op]));
+            }
+            else if (own >=0  && own <= 10) {
+                symbol.setColor(new esri.Color([0, 128, 0, op]));
+            } else {
+                symbol.setColor(new esri.Color([135, 206, 250, op]));
+            }
+
+            return symbol;
+        }
+
+
+        //********************************high charts 图表显示数据********************************************
+
+
+
+        function pie_jcjd(val) {   //监察任务分类饼状图
+            $('#pie-jcjd').highcharts({
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false
+                },
+                title: {
+                    text: ''
+                },
+                tooltip: {
+                    formatter: function () {
+
+                        return this.point.name + '<br><b>占比</b>: ' + Highcharts.numberFormat(this.percentage, 1) + '%<br><b>任务</b>: ' +
+                        Highcharts.numberFormat(this.y, 0, ',') + ' 个';
+                    }
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: false
+                        },
+                        showInLegend: true
+                    }
+                },                
+                legend: {//控制图例显示位置
+                            layout: 'horizontal',
+                            align: 'center',
+                            verticalAlign: 'bottom',
+                            borderWidth: 0,
+                            x:10,
+                            y: 20,
+                            width:240
+                        },
+               exporting: {
+                    enabled: false
+                }, credits: {
+                    enabled: false
+                },
+                series: [{
+                    type: 'pie',
+                    name: '浏览器访问量占比',
+                    data: [
+
+                          [val[0].JSTATUS[2], val[0].JCASENUMBER[2]],
+                          [val[0].JSTATUS[1], val[0].JCASENUMBER[1]],
+                          [val[0].JSTATUS[0], val[0].JCASENUMBER[0]]
+                          ]
+                        }]
+            });
+        }
+        function pie_ajfl(val) {   //监察任务 的 各个节点进度 饼状图
+            $('#pie-ajfl').highcharts({
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false
+                },
+                title: {
+                    text: ''
+                },
+                tooltip: {
+
+                    formatter: function () {
+                        
+                        return this.point.name + '<br><b>占比</b>: ' + Highcharts.numberFormat(this.percentage, 1) + '%<br><b>任务</b>: ' +
+                        Highcharts.numberFormat(this.y, 0, ',') + ' 个';
+                    }
+                },
+
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        size:160,
+                        dataLabels: {
+                            enabled: false
+                        },
+ 
+                        showInLegend: true
+                    }
+                },
+                legend: {//控制图例显示位置
+                    layout: 'horizontal',
+                    align: 'center',
+                    verticalAlign: 'bottom',
+                    borderWidth: 0,
+                    x:10,
+                    y: 20,
+                    width:240
+                },
+                exporting: {
+                    enabled: false
+                }, credits: {
+                    enabled: false
+                },
+
+                series: [{
+                    type: 'pie',
+                    name: '案件数量状态占比',
+
+                    data: [
+                        ['已完成', val[0].JCASENUMBER[2]],
+                        ['处理中', val[0].JCASENUMBER[1]],
+                        ['未处理', val[0].JCASENUMBER[0]]
+                     
+                    ],
+                    
+                }]
+            });
+        }
+        function line_yfjc(val) {    //监察案件数量，月份分组
+            $('#line-yfjc').highcharts({
+                chart: {
+                    type: 'spline'
+                },
+                title: {
+                    text: '月案件报表',
+                    style: {
+                        color: '#19a0f5',//颜色
+                        fontSize: '10px'  //字体
+                    }
+                }, exporting: {
+                    enabled: false
+                }, credits: {
+                    enabled: false
+                },
+                xAxis: {
+                    categories: ['一月', '二月', '三月', '四月', '五月', '六月',
+                                 '七月', '八月', '九月', '十月', '十一月', '十二月'], lineWidth: 1,
+                    alternateGridColor: "red",
+                    lineColor: "#1a96ef",
+                    tickWidth: 0,
+                    labels: {
+                        y: 20, //x轴刻度往下移动20px
+                        style: {
+                            color: '#19a0f5',//颜色
+                            fontSize: '9px'  //字体
+                        }
+                    },
+                }, legend: {
+                    enabled: false
+                },
+                yAxis: {
+                    title: {
+                        text: '(单位:件)',
+                        style: {
+                            color: 'red',//颜色
+                            fontSize: '10px'  //字体
+                        }
+                    },
+                    labels: {
+                        formatter: function () {
+                            return this.value + '';
+                        }
+                    },
+                    tickPositions: [0, 5, 10, 15, 20] // 指定竖轴坐标点的值
+                },
+                tooltip: {
+                    crosshairs: true,
+                    shared: true
+                },
+                plotOptions: {
+                    spline: {
+                        marker: {
+                            radius: 4,
+                            lineColor: '#666666',
+                            lineWidth: 1
+                        }
+                    }
+                },
+                series: [{
+                    name: '案件',
+                    marker: {
+                        symbol: 'square'
+                    },
+                    data: [
+                             val[0].JCOUNTS[0], val[0].JCOUNTS[1], val[0].JCOUNTS[2],
+                             val[0].JCOUNTS[3], val[0].JCOUNTS[4], val[0].JCOUNTS[5],
+                             val[0].JCOUNTS[6], val[0].JCOUNTS[7],val[0].JCOUNTS[8],
+                             val[0].JCOUNTS[9], val[0].JCOUNTS[10],val[0].JCOUNTS[11]
+                         ]
+                }
+                ]
+            });
+        }
+        function column_jczl(val) {
+            $('#column-jczl').highcharts({  //柱状图展示监察总量
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: '案件来源情况月份报表',
+                    style: {
+                        color: '#19a0f5',//颜色
+                        fontSize: '10px'  //字体
+                    }
+                }, exporting: {
+                    enabled: false
+                }, credits: {
+                    enabled: false
+                }, legend: {
+                    layout: 'horizontal',
+                    align: 'center',
+                    verticalAlign: 'bottom',
+                    x: 20,y:20,
+                    floating: true,
+                    backgroundColor: '#FFFFFF'
+                },
+                xAxis: {
+                    categories: ['一月', '二月', '三月', '四月', '五月', '六月',
+                                 '七月', '八月', '九月', '十月', '十一月', '十二月'], lineWidth: 1,
+                    alternateGridColor: "",
+                    lineColor: "#1a96ef",
+                    tickWidth: 0,
+                    labels: {
+                        y: 10, //x轴刻度往下移动20px
+                        style: {
+                            color: '#19a0f5',//颜色
+                            fontSize: '9px'  //字体
+                        }
+                    },
+                },
+                yAxis: {
+                    allowDecimals: false,
+                    min: 0,
+                    title: {
+                        text: '(单位:件)',
+                        style: {
+                            color: 'red',//颜色
+                            fontSize: '10px'  //字体
+                        }
+                    },
+                    labels: {
+                        formatter: function () {
+                            return this.value + '';
+                        }
+                    },
+                    tickPositions: [0, 10, 20, 30] // 指定竖轴坐标点的值
+                },
+                tooltip: {
+                    formatter: function () {
+                        return '<b>' + this.x + '</b><br/>' +
+                            this.series.name + ': ' + this.y + '<br/>' +
+                            '总量: ' + this.point.stackTotal;
+                    }
+                },
+                plotOptions: {
+                    column: {
+                        stacking: 'normal'
+                    }
+                },
+                series: [{
+                    name: '日常监察',
+                    data: [
+                             val[0].JRCJC[0], val[0].JRCJC[1], val[0].JRCJC[2],
+                             val[0].JRCJC[3], val[0].JRCJC[4], val[0].JRCJC[5],
+                             val[0].JRCJC[6], val[0].JRCJC[7], val[0].JRCJC[8],
+                             val[0].JRCJC[9], val[0].JRCJC[10], val[0].JRCJC[11]
+                         ],
+                    stack: 'male'
+                }, {
+                    name: '举报投诉',
+                    data: [
+                             val[0].JJBTS[0], val[0].JJBTS[1], val[0].JJBTS[2],
+                             val[0].JJBTS[3], val[0].JJBTS[4], val[0].JJBTS[5],
+                             val[0].JJBTS[6], val[0].JJBTS[7], val[0].JJBTS[8],
+                             val[0].JJBTS[9], val[0].JJBTS[10], val[0].JJBTS[11]
+                    ],
+                    stack: 'male'
+                }, {
+                    name: '有关部门移送',
+                    data: [
+                             val[0].JYGBM[0], val[0].JYGBM[1], val[0].JYGBM[2],
+                             val[0].JYGBM[3], val[0].JYGBM[4], val[0].JYGBM[5],
+                             val[0].JYGBM[6], val[0].JYGBM[7], val[0].JYGBM[8],
+                             val[0].JYGBM[9], val[0].JYGBM[10], val[0].JYGBM[11]
+                    ],
+                    stack: 'male'
+                }, {
+                    name: '主管部门交办',
+                    data: [
+                             val[0].JZGBM[0], val[0].JZGBM[1], val[0].JZGBM[2],
+                             val[0].JZGBM[3], val[0].JZGBM[4], val[0].JZGBM[5],
+                             val[0].JZGBM[6], val[0].JZGBM[7], val[0].JZGBM[8],
+                             val[0].JZGBM[9], val[0].JZGBM[10], val[0].JZGBM[11]
+                    ],
+                    stack: 'male'
+                }]
+            });
+        }
+        function collin_charts(val) {
+            $('#collin-charts').highcharts({
+                chart: {
+                    zoomType: 'xy'
+                },
+                title: {
+                    text: '各地市节能检查案件进展状况',
+                    style: {
+                        color: 'red'//颜色
+                    }
+                },
+                subtitle: {
+                    text: ''
+                }, exporting: {
+                    enabled: false
+                }, credits: {
+                    enabled: false
+                },
+                xAxis: [{
+                    categories: [
+                                 '郑州市',	'开封市',	'洛阳市','平顶山市',
+                                 '安阳市','鹤壁市','新乡市','焦作市','濮阳市',
+                                 '许昌市','漯河市','三门峡市','南阳市',
+                                 '商丘市', '信阳市', '周口市', '驻马店市'
+                                 ],
+                    crosshair: true
+                }],
+                yAxis: [{ // Primary yAxis
+                    labels: {
+                        format: '{value}%',
+                        style: {
+                            color: Highcharts.getOptions().colors[2]
+                        }
+                    },
+                    title: {
+                        text: '完成率',
+                        style: {
+                            color: Highcharts.getOptions().colors[2]
+                        }
+                    },
+                    opposite: true
+                }, { // Secondary yAxis
+                    gridLineWidth: 0,
+                    title: {
+                        text: '案件数量',
+                        style: {
+                            color: Highcharts.getOptions().colors[0]
+                        }
+                    },
+                    labels: {
+                        format: '{value} 件',
+                        style: {
+                            color: Highcharts.getOptions().colors[0]
+                        }
+                    }
+                }, { // Tertiary yAxis
+                    gridLineWidth: 0,
+                    title: {
+                        text: '',
+                        style: {
+                            color: Highcharts.getOptions().colors[1]
+                        }
+                    },
+                    labels: {
+                        format: '{value} mb',
+                        style: {
+                            color: Highcharts.getOptions().colors[1]
+                        }
+                    },
+                    opposite: true
+                }],
+                tooltip: {
+                    formatter: function () {
+                        if (this.point.stackTotal==undefined ){
+
+                            return '<b>' + this.x + '</b><br/>' +
+                                  this.series.name + ': ' + this.y + '%<br/>' 
+                        }else{
+
+                            return '<b>' + this.x + '</b><br/>' +
+                                  this.series.name + ': ' + this.y + '件<br/>' +
+                                  '总量: ' + this.point.stackTotal+'件';
+                        }
+                    }
+                },
+                legend: {
+                    layout: 'vertical',
+                    align: 'left',
+                    x: 60,
+                    y:-10,
+                    verticalAlign: 'top',
+
+                    floating: true,
+                    backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
+                }, plotOptions: {
+                    column: {
+                        stacking: 'normal',
+                        dataLabels: {
+                            enabled: true,
+                            color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
+                            style: {
+                                textShadow: '0 0 3px black'
+                            }
+                        }
+                    }
+                },
+                series: [{
+                    name: '未处理',
+                    type: 'column',
+                    yAxis: 1,
+                    data: [
+                             val[0].JUNTREATED[0], val[0].JUNTREATED[1], val[0].JUNTREATED[2],
+                             val[0].JUNTREATED[3], val[0].JUNTREATED[4], val[0].JUNTREATED[5],
+                             val[0].JUNTREATED[6], val[0].JUNTREATED[7], val[0].JUNTREATED[8],
+                             val[0].JUNTREATED[9], val[0].JUNTREATED[10], val[0].JUNTREATED[11],
+                             val[0].JUNTREATED[12], val[0].JUNTREATED[13], val[0].JUNTREATED[14],
+                             val[0].JUNTREATED[15], val[0].JUNTREATED[16], val[0].JUNTREATED[17]
+                    ],
+                    tooltip: {
+                        valueSuffix: ' 件'
+                    }
+                }, {
+                    name: '完成',
+                    type: 'column',
+                    yAxis: 1,
+                    data: [
+                             val[0].JCOMPLETED[0], val[0].JCOMPLETED[1], val[0].JCOMPLETED[2],
+                             val[0].JCOMPLETED[3], val[0].JCOMPLETED[4], val[0].JCOMPLETED[5],
+                             val[0].JCOMPLETED[6], val[0].JCOMPLETED[7], val[0].JCOMPLETED[8],
+                             val[0].JCOMPLETED[9], val[0].JCOMPLETED[10], val[0].JCOMPLETED[11],
+                             val[0].JCOMPLETED[12], val[0].JCOMPLETED[13], val[0].JCOMPLETED[14],
+                             val[0].JCOMPLETED[15], val[0].JCOMPLETED[16], val[0].JCOMPLETED[17]
+                    ],
+                    marker: {
+                        enabled: false
+                    },
+                    tooltip: {
+                        valueSuffix: ' 件'
+                    }
+                }, {
+                    name: '完成率',
+                    type: 'spline',
+                    yAxis: 0,
+                    data: [
+                             val[0].JRATE[0], val[0].JRATE[1], val[0].JRATE[2],
+                             val[0].JRATE[3], val[0].JRATE[4], val[0].JRATE[5],
+                             val[0].JRATE[6], val[0].JRATE[7], val[0].JRATE[8],
+                             val[0].JRATE[9], val[0].JRATE[10], val[0].JRATE[11],
+                             val[0].JRATE[12], val[0].JRATE[13], val[0].JRATE[14],
+                             val[0].JRATE[15], val[0].JRATE[16], val[0].JRATE[17]
+
+                         ],
+                    tooltip: {
+                        valueSuffix: '%'
+                    }
+                },
+
+
+                ]
+            });
+        }
+
+
+
+
+    </script>
+</head>
+
+<body>
+    <section class="vbox jnmbkh-box" style="width:1200px;">
+        <section class="scrollable">
+            <div class="container-fluid">
+                <div class="jnmbkh-t">
+                    <h3 class="m-b-none">总量控制概览</h3>
+                    <div class="jnmbkh-t-ri">
+                        <div class="date-outbox">
+                            <div class="input-group date" id="starttime">
+                                <input type="text" class="form-control" id="txtKhnf" placeholder="年份" />
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                        <button class="btn btn-lg btn-success" type="button" onclick="Search()" id="btnSearch">
+                            <i class="fa"></i>查询
+                        </button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-7 col-md-7 col-sm-7">
+                        <div class="jnmbkh-tl jnmbkh-tl-purple">
+                            <div class="jnmbkh-tr">
+                                <h4>案件总量</h4>
+
+                                <div id="shi_map_show" style="background-color:aqua;
+                                     position: absolute; top: 5px; right: 3px; bottom: 3px; width: 100%; float: right">
+                                </div>
+                                <div class="gis-content1">
+                                    <div id="gis-head" class="gis-head">郑州市案件数量信息</div>
+                                    <div id="gis-content" class="gis-content" style="line-height:20px; color:#000"> <br /><br /></div>
+                                </div>
+                                <!--显示图例-->
+                                <div class="mapLegend" id="divMapLegendCon_1" style="background-color:aqua ">
+                                    <div class="legendTitle">图&nbsp;&nbsp;&nbsp;&nbsp;例</div>
+                                    <div class="legendTitle" style="text-align:right;font-size:10px;color:red">（单位:件）</div>
+                                    <div class="legendContent" id="divMapLegend_1">
+                                        <div class="legendBar">
+                                            <div class="legendBarColor" style="background: rgb(255,255,0)"></div>
+                                            <div class="legendBarText" id="divLegendBarText_2">50 以上</div>
+                                        </div>
+                                        <div class="legendBar">
+                                            <div class="legendBarColor" style="background: rgb(173,255,47)"></div>
+                                            <div class="legendBarText" id="divLegendBarText_4">10 - 50</div>
+                                        </div>
+                                        <div class="legendBar">
+                                            <div class="legendBarColor" style="background: rgb(0,128,0)"></div>
+                                            <div class="legendBarText" id="divLegendBarText_5">＜10</div>
+                                        </div>
+                                        <div class="legendBar">
+                                            <div class="legendBarColor" style="background: rgb(135, 206, 250)"></div>
+                                            <div class="legendBarText" id="divLegendBarText_6">&nbsp;&nbsp;无&nbsp;&nbsp;</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="jnmbkh-con">
+                            <!-- e chart数据表 -->
+                            <div id="mapBox" style="width:100%;height:685px; "></div>
+                            <!-- -->
+                        </div>
+                    </div>
+                    <div class="col-lg-5 col-md-5 col-sm-5">
+                        <div class="row" style="margin-bottom:15px; border-bottom:1px solid #8fc3e1;">
+                            <div class="jnmbkh-tl jnmbkh-tl-green">
+                                <div class="jnmbkh-tr">
+                                    <h4><span id="nyzlgkSpan"></span>能源总量概览</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-bottom:15px;">
+                            <table class="zlkzgl-tj">
+                                <tr>
+                                    <td><div><p>监察总案件</p><span id="jczl">50</span></div></td>
+                                    <td><div><p>监察完成  </p><span id="jcwc">30</span></div></td>
+                                    <td><div><p>监察处理中</p><span id="jcclz">10</span></div></td>
+                                    <td><div><p>监察未处理</p><span id="jcwcl">10</span></div></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="row" style="margin-bottom:15px;">
+                            <div class="col-sm-6" style="padding:0px;">
+                                <div class="zlkzgl-con">
+                                    <!-- 饼状图检查进度 -->
+                                    <div id="pie-jcjd" style="width:100%;height:200px; "></div>
+
+                                </div>
+                            </div>
+                            <div class="col-sm-6" style="padding-right:0px;">
+                                <div class="zlkzgl-con">
+                                    <!-- 饼状图，案件分类 -->
+                                    <div id="pie-ajfl" style="width:100%;height:200px; "></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-bottom:15px;">
+                            <div class="zlkzgl-con">
+                                <!-- 按照月份分组，监察案件数 -->
+                                <div id="line-yfjc" style="width:100%;height:168px; "></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="zlkzgl-con">
+                                <!-- 柱状图展示监察总量 -->
+                                <div id="column-jczl" style="width:100%;height:168px; "></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row wrapper" style="padding-top:0;">
+                    <div class="jnmbkh-tl jnmbkh-tl-blue">
+                        <div class="jnmbkh-tr">
+                            <h4>各地市能源消费累计</h4>
+                        </div>
+                    </div>
+                    <div class="jnmbkh-con">
+                        <!-- e chart数据表 -->
+                        <div id="collin-charts" style="width:100%;height:220px; "></div>
+                        <!-- -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+</body>
+</html>

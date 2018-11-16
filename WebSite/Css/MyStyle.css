@@ -1,0 +1,104 @@
+﻿/**
+
+    wys 
+     2017年
+       创建CSS  主要用于省节能监察平台
+
+
+*/
+/*  搜索条件，字体大小  */
+.search-condition-font {
+    font-size: 14px;
+}
+/*  弹出窗体，字体大小  */
+.dialog-condition-font {
+    font-size: 14px;
+}
+/*  编辑按钮，扁平化显示，字体   */
+.btn-edit {
+    /*background-image: url("../icons/search.png");*/
+   color: white;
+    padding: 6px 8px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 4px 2px;
+    cursor: pointer;
+    background-color: #4cb6cb;
+	border:1px solid #4cb6cb;
+	border-radius:3px;
+}
+    /*竖表悬放字体颜色改变*/
+.btn-edit:hover {
+    color: #fff;
+    background-color: #39adc4;
+	border:1px solid #36a3b9;
+	border-radius:3px;
+}
+
+.btn-delete {
+    /*background-image: url("../icons/search.png");*/
+     color: white;
+    padding: 6px 8px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    /*margin: 4px 2px;*/
+    cursor: pointer;
+    background-color: #4cb6cb;
+	border:1px solid #4cb6cb;
+	border-radius:3px;
+}
+    /*王岩松  竖表悬放字体颜色改变*/
+.btn-delete:hover {
+    color: #fff;
+    background-color: #39adc4;
+	border:1px solid #36a3b9;
+	border-radius:3px;
+}
+
+.btn-reject {
+    /*background-image: url("../icons/search.png");*/
+   color: white;
+    padding: 6px 8px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    /*margin: 4px 2px;*/
+    cursor: pointer;
+    background-color: #4cb6cb;
+	border:1px solid #4cb6cb;
+	border-radius:3px;
+}
+    /*王岩松  竖表悬放字体颜色改变*/
+.btn-reject:hover {
+    color: #fff;
+    background-color: #39adc4;
+	border:1px solid #36a3b9;
+	border-radius:3px;
+}
+
+.btn-adopt {
+    /*background-image: url("../icons/search.png");*/
+    color: white;
+    padding: 6px 8px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    /*margin: 4px 2px;*/
+    cursor: pointer;
+    background-color: #4cb6cb;
+	border:1px solid #4cb6cb;
+	border-radius:3px;
+}
+    /*王岩松  竖表悬放字体颜色改变*/
+.btn-adopt:hover {
+    color: #fff;
+    background-color: #39adc4;
+	border:1px solid #36a3b9;
+	border-radius:3px;
+}

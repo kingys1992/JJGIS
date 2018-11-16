@@ -1,0 +1,5 @@
+D:\test\04-.NETPROJECT\JNJC_Solution\src\HNHB.Model\bin\Debug\JNJC.Model.dll
+D:\test\04-.NETPROJECT\JNJC_Solution\src\HNHB.Model\bin\Debug\JNJC.Model.pdb
+D:\test\04-.NETPROJECT\JNJC_Solution\src\HNHB.Model\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.Min.dll
+D:\test\04-.NETPROJECT\JNJC_Solution\src\HNHB.Model\obj\Debug\JNJC.Model.dll
+D:\test\04-.NETPROJECT\JNJC_Solution\src\HNHB.Model\obj\Debug\JNJC.Model.pdb

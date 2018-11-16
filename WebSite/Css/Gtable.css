@@ -1,0 +1,161 @@
+﻿body 
+{
+    
+}
+ .div1{background:#F8F8FF;width:900px; border:1px solid #363636;}
+    .div2{background:#1C86EE;width:100%;height:20px;}
+    .div3{background:#F2F2F2;float:left;border:1px solid #D4D4D4; width:143px;height:100%;}
+    .div4{background:#F2F2F2;float:left; width:738px;height:20px;border:1px solid #D4D4D4;margin-top:5px;margin-left:5px}
+    .div5{background:#F2F2F2;float:left; width:738px;height:396px;border:1px solid #D4D4D4;margin-left:5px}
+    .div6{background:#E0EEE0;float:left; width:728px;height:30px;border:1px solid #D4D4D4;margin-left:5px;margin-top:5px}
+    .div7{background:#E0EEE0;float:left; width:180px;height:20px;margin-top:8px;margin-left:10px}
+    .div8{background:#E0EEE0;float:left; width:500px;height:20px;margin-top:8px;}
+    .div9{background:#E0EEE0;float:left; width:728px;height:130px;border:1px solid #D4D4D4;margin-left:5px;margin-top:1px}
+    .div11{background:#F2F2F2;float:left; width:728px;height:30px;border:1px solid #D4D4D4;margin-left:5px;margin-top:5px}
+    .div12{background:#E0EEE0;float:left; width:728px;height:185px;border:1px solid #D4D4D4;margin-left:5px}
+    .divleft{background:#F2F2F2;float:left;border:1px solid #D4D4D4; width:143px;}
+   table.imagetable {
+	font-family: verdana,arial,sans-serif;
+	font-size:11px;
+	
+	color:#333333;
+	border-width: 1px;
+	border-color: White;
+	border-collapse: collapse;
+	width:100%;background:#328aa4; 
+}
+table.imagetable th {
+	background:#b5cfd2 url('cell-blue.jpg');
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: White;
+
+}
+table.imagetable td {
+	background:#F5F5DC url('cell-grey.jpg');
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: White;
+}
+
+
+table.itable {
+	width:100%;background:#328aa4; height:100%;
+}
+table.itable th {
+	background:#328aa4 url(tr_back.gif) repeat-x;color:#fff;
+}
+table.itable td {
+	
+}
+
+
+
+*{margin:0;padding:0;list-style:none;}
+html{background-color:#E3E3E3; font-size:14px; color:#000; font-family:'微软雅黑'}
+h2{line-height:30px; font-size:20px;}
+a,a:hover{ text-decoration:none;}
+pre{font-family:'微软雅黑'}
+.box{width:970px; padding:10px 20px; background-color:#fff; margin:10px auto;}
+.box a{padding-right:20px;}
+.demo1,.demo2,.demo3,.demo4,.demo5,.demo6{margin:25px 0;}
+h3{margin:10px 0;}
+.layinput{height: 22px;line-height: 22px;width: 150px;margin: 0;}
+
+.btn-primary {
+  color: #fff;
+  background-color: #6BA2D8;
+  border-color: #2e6da4;
+}
+* { 
+margin: 0; 
+padding: 0; 
+} 
+body { 
+padding: 50px 50px; 
+} 
+.btn-select { 
+position: relative; 
+display: inline-block; 
+width: 150px; 
+height: 25px; 
+background-color: #f80; 
+font: 14px/20px "Microsoft YaHei"; 
+color: #fff; 
+} 
+.btn-select .cur-select { 
+position: absolute; 
+display: block; 
+width: 150px; 
+height: 25px; 
+line-height: 25px; 
+background: #f80 url(ico-arrow.png) no-repeat 125px center; 
+text-indent: 10px; 
+} 
+.btn-select:hover .cur-select { 
+background-color: #f90; 
+} 
+.btn-select select { 
+position: absolute; 
+top: 0; 
+left: 0; 
+width: 150px; 
+height: 25px; 
+opacity: 0; 
+filter: alpha(opacity: 0;); 
+font: 14px/20px "Microsoft YaHei"; 
+color: #f80; 
+} 
+.btn-select select option { 
+text-indent: 10px; 
+} 
+.btn-select select option:hover { 
+background-color: #f80; 
+color: #fff; 
+} 
+.first
+{
+    background:url(../images/go-previous-view.png);
+    background-repeat:no-repeat;
+    text-decoration:none;
+    font :宋体;
+    color:rgba(0, 0, 0, 0);
+    height:25px;
+    width:85px;
+}
+.next
+{
+    background:url(../images/go-next-view.png);
+    background-repeat:no-repeat;
+    text-decoration:none;
+    font :宋体;
+    color:rgba(0, 0, 0, 0);
+    height:25px;
+    width:85px;
+}
+.tou
+{   
+    background-image:linear-gradient(180deg,#FFFDFD,#C9CFD8);
+    font-size:12px;
+}
+.fanye
+{
+ background:rgba(0, 0, 0, 0); 
+}
+.button
+{
+ float:right;
+ margin-right:60px;
+ margin-top:-3px; 
+ background-color:#1C86EE; 
+ width:50px; 
+ font-weight:bold; 
+ color:White
+}
+.radioa{font-size:11px}
+.span{font-size:12px}
+.riqi{float:left}
+.paiko{float:left;margin-left:10px}
+

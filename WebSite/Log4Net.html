@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+    <script src="Script/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript">
+ 
+        //初始化
+        $(document).ready(function () {
+            // 初始化查询日期，默认本年元月开始，如2017年01月01日开始  今天结束
+            alert(1)
+ 
+            $.ajax({
+                type: "post",
+                contentType: "application/json",
+                url: "ashx/Log4Net.ashx?TYPE=1" ,
+                dataType: "json",
+                success: function (result) {
+                    var result = eval(result);
+                    pie(result);
+                }
+            });
+         
+        });
+         
+    </script>
+</head>
+<body>
+
+</body>
+</html>

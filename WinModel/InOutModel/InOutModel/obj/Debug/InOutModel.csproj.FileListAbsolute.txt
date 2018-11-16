@@ -1,0 +1,10 @@
+D:\code1\HNHBCode\HNHB_Solution\WinModel\InOutModel\InOutModel\bin\Debug\InOutModel.exe.config
+D:\code1\HNHBCode\HNHB_Solution\WinModel\InOutModel\InOutModel\bin\Debug\InOutModel.exe
+D:\code1\HNHBCode\HNHB_Solution\WinModel\InOutModel\InOutModel\bin\Debug\InOutModel.pdb
+D:\code1\HNHBCode\HNHB_Solution\WinModel\InOutModel\InOutModel\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.Min.dll
+D:\code1\HNHBCode\HNHB_Solution\WinModel\InOutModel\InOutModel\obj\Debug\InOutModel.csprojResolveAssemblyReference.cache
+D:\code1\HNHBCode\HNHB_Solution\WinModel\InOutModel\InOutModel\obj\Debug\InOutModel.Form1.resources
+D:\code1\HNHBCode\HNHB_Solution\WinModel\InOutModel\InOutModel\obj\Debug\InOutModel.Properties.Resources.resources
+D:\code1\HNHBCode\HNHB_Solution\WinModel\InOutModel\InOutModel\obj\Debug\InOutModel.csproj.GenerateResource.Cache
+D:\code1\HNHBCode\HNHB_Solution\WinModel\InOutModel\InOutModel\obj\Debug\InOutModel.exe
+D:\code1\HNHBCode\HNHB_Solution\WinModel\InOutModel\InOutModel\obj\Debug\InOutModel.pdb

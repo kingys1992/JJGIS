@@ -1,0 +1,14 @@
+D:\code1\HNHBCode\HNHB_Solution\src\HNHB.Model\bin\Release\HNHB.Model.dll
+D:\code1\HNHBCode\HNHB_Solution\src\HNHB.Model\bin\Release\HNHB.Model.pdb
+D:\code1\HNHBCode\HNHB_Solution\src\HNHB.Model\obj\Release\HNHB.Model.dll
+D:\code1\HNHBCode\HNHB_Solution\src\HNHB.Model\obj\Release\HNHB.Model.pdb
+D:\code1\HNHBCode\HNHB_Solution\src\HNHB.Model\obj\Release\HNHB.Model.csprojResolveAssemblyReference.cache
+C:\HNHB_Solution\HNHB_Solution\src\HNHB.Model\bin\Release\HNHB.Model.dll
+C:\HNHB_Solution\HNHB_Solution\src\HNHB.Model\bin\Release\HNHB.Model.pdb
+C:\HNHB_Solution\HNHB_Solution\src\HNHB.Model\obj\Release\HNHB.Model.dll
+C:\HNHB_Solution\HNHB_Solution\src\HNHB.Model\obj\Release\HNHB.Model.pdb
+D:\省节能平台\HNHB_Solution\src\HNHB.Model\bin\Release\HNHB.Model.dll
+D:\省节能平台\HNHB_Solution\src\HNHB.Model\bin\Release\HNHB.Model.pdb
+D:\省节能平台\HNHB_Solution\src\HNHB.Model\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.Min.dll
+D:\省节能平台\HNHB_Solution\src\HNHB.Model\obj\Release\HNHB.Model.dll
+D:\省节能平台\HNHB_Solution\src\HNHB.Model\obj\Release\HNHB.Model.pdb

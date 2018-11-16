@@ -1,0 +1,822 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="GetDataStatisticsTable">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SiteCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="StartDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EndDate" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDataStatisticsTableResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDataStatisticsTableResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDataInfoTable">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SiteCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="StartDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EndDate" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDataInfoTableResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDataInfoTableResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetThreeHourDataDBRateList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="StartDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EndDate" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetThreeHourDataDBRateListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetThreeHourDataDBRateListResult" type="tns:ArrayOfT_Temp_DBTJ" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfT_Temp_DBTJ">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="T_Temp_DBTJ" nillable="true" type="tns:T_Temp_DBTJ" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="T_Temp_DBTJ">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="RegionName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RegionCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SiteCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SiteName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ZhDbl" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="GmsyData" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="GmsyDbl" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ZdData" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ZdDbl" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ZlData" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ZlDbl" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AdData" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AdDbl" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RjyData" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RjyDbl" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SwdxData" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SwdxYjs" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetThreeDataStatisticsTable">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SiteCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="StartDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EndDate" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetThreeDataStatisticsTableResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetThreeDataStatisticsTableResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAlarmDataStatisticsTable">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="StartDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EndDate" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAlarmDataStatisticsTableResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAlarmDataStatisticsTableResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAlarmDataStatisticsTable_S">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="StartDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EndDate" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAlarmDataStatisticsTable_SResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAlarmDataStatisticsTable_SResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRunDataRate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="StartDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EndDate" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRunDataRateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRunDataRateResult" type="tns:ArrayOfT_Temp_RunRate" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfT_Temp_RunRate">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="T_Temp_RunRate" nillable="true" type="tns:T_Temp_RunRate" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="T_Temp_RunRate">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ReigonCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SiteCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RegionName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SiteName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RunRate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DataEfficiency" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetReportInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="StartDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EndDate" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetReportInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetReportInfoResult" type="tns:ArrayOfT_Temp_DBTJ" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DataTable" nillable="true">
+        <s:complexType>
+          <s:sequence>
+            <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+            <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ArrayOfT_Temp_DBTJ" nillable="true" type="tns:ArrayOfT_Temp_DBTJ" />
+      <s:element name="ArrayOfT_Temp_RunRate" nillable="true" type="tns:ArrayOfT_Temp_RunRate" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetDataStatisticsTableSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDataStatisticsTable" />
+  </wsdl:message>
+  <wsdl:message name="GetDataStatisticsTableSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDataStatisticsTableResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDataInfoTableSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDataInfoTable" />
+  </wsdl:message>
+  <wsdl:message name="GetDataInfoTableSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDataInfoTableResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetThreeHourDataDBRateListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetThreeHourDataDBRateList" />
+  </wsdl:message>
+  <wsdl:message name="GetThreeHourDataDBRateListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetThreeHourDataDBRateListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetThreeDataStatisticsTableSoapIn">
+    <wsdl:part name="parameters" element="tns:GetThreeDataStatisticsTable" />
+  </wsdl:message>
+  <wsdl:message name="GetThreeDataStatisticsTableSoapOut">
+    <wsdl:part name="parameters" element="tns:GetThreeDataStatisticsTableResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAlarmDataStatisticsTableSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAlarmDataStatisticsTable" />
+  </wsdl:message>
+  <wsdl:message name="GetAlarmDataStatisticsTableSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAlarmDataStatisticsTableResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAlarmDataStatisticsTable_SSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAlarmDataStatisticsTable_S" />
+  </wsdl:message>
+  <wsdl:message name="GetAlarmDataStatisticsTable_SSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAlarmDataStatisticsTable_SResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRunDataRateSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRunDataRate" />
+  </wsdl:message>
+  <wsdl:message name="GetRunDataRateSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRunDataRateResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetReportInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetReportInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetReportInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetReportInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDataStatisticsTableHttpGetIn">
+    <wsdl:part name="SiteCode" type="s:string" />
+    <wsdl:part name="StartDate" type="s:string" />
+    <wsdl:part name="EndDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetDataStatisticsTableHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="GetDataInfoTableHttpGetIn">
+    <wsdl:part name="SiteCode" type="s:string" />
+    <wsdl:part name="StartDate" type="s:string" />
+    <wsdl:part name="EndDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetDataInfoTableHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="GetThreeHourDataDBRateListHttpGetIn">
+    <wsdl:part name="StartDate" type="s:string" />
+    <wsdl:part name="EndDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetThreeHourDataDBRateListHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfT_Temp_DBTJ" />
+  </wsdl:message>
+  <wsdl:message name="GetThreeDataStatisticsTableHttpGetIn">
+    <wsdl:part name="SiteCode" type="s:string" />
+    <wsdl:part name="StartDate" type="s:string" />
+    <wsdl:part name="EndDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetThreeDataStatisticsTableHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="GetAlarmDataStatisticsTableHttpGetIn">
+    <wsdl:part name="StartDate" type="s:string" />
+    <wsdl:part name="EndDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAlarmDataStatisticsTableHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="GetAlarmDataStatisticsTable_SHttpGetIn">
+    <wsdl:part name="StartDate" type="s:string" />
+    <wsdl:part name="EndDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAlarmDataStatisticsTable_SHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="GetRunDataRateHttpGetIn">
+    <wsdl:part name="StartDate" type="s:string" />
+    <wsdl:part name="EndDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetRunDataRateHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfT_Temp_RunRate" />
+  </wsdl:message>
+  <wsdl:message name="GetReportInfoHttpGetIn">
+    <wsdl:part name="StartDate" type="s:string" />
+    <wsdl:part name="EndDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetReportInfoHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfT_Temp_DBTJ" />
+  </wsdl:message>
+  <wsdl:message name="GetDataStatisticsTableHttpPostIn">
+    <wsdl:part name="SiteCode" type="s:string" />
+    <wsdl:part name="StartDate" type="s:string" />
+    <wsdl:part name="EndDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetDataStatisticsTableHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="GetDataInfoTableHttpPostIn">
+    <wsdl:part name="SiteCode" type="s:string" />
+    <wsdl:part name="StartDate" type="s:string" />
+    <wsdl:part name="EndDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetDataInfoTableHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="GetThreeHourDataDBRateListHttpPostIn">
+    <wsdl:part name="StartDate" type="s:string" />
+    <wsdl:part name="EndDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetThreeHourDataDBRateListHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfT_Temp_DBTJ" />
+  </wsdl:message>
+  <wsdl:message name="GetThreeDataStatisticsTableHttpPostIn">
+    <wsdl:part name="SiteCode" type="s:string" />
+    <wsdl:part name="StartDate" type="s:string" />
+    <wsdl:part name="EndDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetThreeDataStatisticsTableHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="GetAlarmDataStatisticsTableHttpPostIn">
+    <wsdl:part name="StartDate" type="s:string" />
+    <wsdl:part name="EndDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAlarmDataStatisticsTableHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="GetAlarmDataStatisticsTable_SHttpPostIn">
+    <wsdl:part name="StartDate" type="s:string" />
+    <wsdl:part name="EndDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAlarmDataStatisticsTable_SHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="GetRunDataRateHttpPostIn">
+    <wsdl:part name="StartDate" type="s:string" />
+    <wsdl:part name="EndDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetRunDataRateHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfT_Temp_RunRate" />
+  </wsdl:message>
+  <wsdl:message name="GetReportInfoHttpPostIn">
+    <wsdl:part name="StartDate" type="s:string" />
+    <wsdl:part name="EndDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetReportInfoHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfT_Temp_DBTJ" />
+  </wsdl:message>
+  <wsdl:portType name="DataServiceSoap">
+    <wsdl:operation name="GetDataStatisticsTable">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">统计两个时刻点的数据应有条数，实际条数，缺数条数(基于小时数据)；&lt;br/&gt;SiteCode可为空&lt;br/&gt;StartDate格式：2014-01-01 01&lt;br/&gt;EndDate格式：2014-01-01 13&lt;br/&gt;swdx生物毒性，zp总磷，rjy溶解氧，gmsy高锰酸盐指数，ad氨氮，zd总氮&lt;br/&gt;totalcount总的应有条数，count实际条数，qscount缺数条数</wsdl:documentation>
+      <wsdl:input message="tns:GetDataStatisticsTableSoapIn" />
+      <wsdl:output message="tns:GetDataStatisticsTableSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDataInfoTable">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">统计两个时刻点的数据情况(基于小时数据)；&lt;br/&gt;SiteCode可为空&lt;br/&gt;StartDate格式：2014-01-01 01&lt;br/&gt;EndDate格式：2014-01-01 13&lt;br/&gt;swdx生物毒性，zp总磷，rjy溶解氧，gmsy高锰酸盐指数，ad氨氮，zd总氮</wsdl:documentation>
+      <wsdl:input message="tns:GetDataInfoTableSoapIn" />
+      <wsdl:output message="tns:GetDataInfoTableSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetThreeHourDataDBRateList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">统计两个时间段内的数据达标情况(基于三小时均值)；&lt;br/&gt;StartDate格式：2014-01-01，EndDate格式：2014-01-02&lt;br/&gt;数据列表说明：RegionName行政区划名称，RegionCode行政区划代码，SiteCode测站代码，&lt;br/&gt;ZhDbl综合达标率，GmsyData高锰酸盐数据范围，GmsyDbl高锰酸盐达标率 &lt;br/&gt;ZdData总氮数据范围，ZdDbl总氮达标率，ZlData总磷数据范围，ZlDbl总磷达标率&lt;br/&gt;AdData氨氮数据范围，AdDbl氨氮达标率 &lt;br/&gt;RjyData溶解氧数据范围，RjyDbl溶解氧达标率，SwdxData生物毒性数据范围，SwdxYjs生物毒性预警次数</wsdl:documentation>
+      <wsdl:input message="tns:GetThreeHourDataDBRateListSoapIn" />
+      <wsdl:output message="tns:GetThreeHourDataDBRateListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetThreeDataStatisticsTable">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">统计两段时间段内的数据总的实际条数（基于三小时均值）；&lt;br/&gt;SiteCode可为空&lt;br/&gt;StartDate格式：2014-01-01，EndDate格式：2014-01-01 &lt;br/&gt;swdx生物毒性，zp总磷，rjy溶解氧，gmsy高锰酸盐指数，ad氨氮，zd总氮</wsdl:documentation>
+      <wsdl:input message="tns:GetThreeDataStatisticsTableSoapIn" />
+      <wsdl:output message="tns:GetThreeDataStatisticsTableSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAlarmDataStatisticsTable">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">(横表)统计两段时间段内的超标因子（基于五分钟数据）&lt;br/&gt;StartDate格式：2014-01-01，EndDate格式：2014-01-01 &lt;br/&gt;数据列表说明：RegionName行政区划名称，RegionCode行政区划代码，SiteCode测站代码，SiteName测站名称，CBItems超标因子集合(包括名称、超标次数、最小值最大值)</wsdl:documentation>
+      <wsdl:input message="tns:GetAlarmDataStatisticsTableSoapIn" />
+      <wsdl:output message="tns:GetAlarmDataStatisticsTableSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAlarmDataStatisticsTable_S">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">(竖表)统计两段时间段内的超标因子（基于五分钟数据）&lt;br/&gt;StartDate格式：2014-01-01，EndDate格式：2014-01-01 &lt;br/&gt;数据列表说明：RegionName行政区划名称，RegionCode行政区划代码，SiteCode测站代码，SiteName测站名称，ItemID超标因子ID，ItemName超标因子名称&lt;br/&gt;cbcount超标次数，maxvalue最大值，minvalue最小值</wsdl:documentation>
+      <wsdl:input message="tns:GetAlarmDataStatisticsTable_SSoapIn" />
+      <wsdl:output message="tns:GetAlarmDataStatisticsTable_SSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRunDataRate">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">统计两个时刻点的运行率有效率&lt;br/&gt;StartDate格式：2014-01-01，EndDate格式：2014-01-01 &lt;br/&gt;数据列表说明：RegionName行政区划名称，RegionCode行政区划代码，SiteCode测站代码，SiteName测站名称，RunRate 运行率，DataEfficiency 有效率</wsdl:documentation>
+      <wsdl:input message="tns:GetRunDataRateSoapIn" />
+      <wsdl:output message="tns:GetRunDataRateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReportInfo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">统计两个时刻点的达标率（单因子水质监控情况）&lt;br/&gt;StartDate格式：2014-01-01，EndDate格式：2014-01-01 &lt;br/&gt;数据列表说明：RegionName行政区划名称，RegionCode行政区划代码，SiteCode测站代码，SiteName测站名称，ZhDBl综合达标率，GmsyData高锰酸钾数据范围，GmsyDbl高锰酸盐达标率，ZdData总氮数据范围，ZdDbl总氮达标率，ZlData总磷数据范围，ZlDbl总磷达标率，AdData氨氮数据范围，AdDbl氨氮达标率，RjyData溶解氧数据范围，RjyDbl溶解氧达标率，SwdxData生物毒性数据范围，SwdxYjs生物毒性预警数</wsdl:documentation>
+      <wsdl:input message="tns:GetReportInfoSoapIn" />
+      <wsdl:output message="tns:GetReportInfoSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="DataServiceHttpGet">
+    <wsdl:operation name="GetDataStatisticsTable">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">统计两个时刻点的数据应有条数，实际条数，缺数条数(基于小时数据)；&lt;br/&gt;SiteCode可为空&lt;br/&gt;StartDate格式：2014-01-01 01&lt;br/&gt;EndDate格式：2014-01-01 13&lt;br/&gt;swdx生物毒性，zp总磷，rjy溶解氧，gmsy高锰酸盐指数，ad氨氮，zd总氮&lt;br/&gt;totalcount总的应有条数，count实际条数，qscount缺数条数</wsdl:documentation>
+      <wsdl:input message="tns:GetDataStatisticsTableHttpGetIn" />
+      <wsdl:output message="tns:GetDataStatisticsTableHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDataInfoTable">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">统计两个时刻点的数据情况(基于小时数据)；&lt;br/&gt;SiteCode可为空&lt;br/&gt;StartDate格式：2014-01-01 01&lt;br/&gt;EndDate格式：2014-01-01 13&lt;br/&gt;swdx生物毒性，zp总磷，rjy溶解氧，gmsy高锰酸盐指数，ad氨氮，zd总氮</wsdl:documentation>
+      <wsdl:input message="tns:GetDataInfoTableHttpGetIn" />
+      <wsdl:output message="tns:GetDataInfoTableHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetThreeHourDataDBRateList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">统计两个时间段内的数据达标情况(基于三小时均值)；&lt;br/&gt;StartDate格式：2014-01-01，EndDate格式：2014-01-02&lt;br/&gt;数据列表说明：RegionName行政区划名称，RegionCode行政区划代码，SiteCode测站代码，&lt;br/&gt;ZhDbl综合达标率，GmsyData高锰酸盐数据范围，GmsyDbl高锰酸盐达标率 &lt;br/&gt;ZdData总氮数据范围，ZdDbl总氮达标率，ZlData总磷数据范围，ZlDbl总磷达标率&lt;br/&gt;AdData氨氮数据范围，AdDbl氨氮达标率 &lt;br/&gt;RjyData溶解氧数据范围，RjyDbl溶解氧达标率，SwdxData生物毒性数据范围，SwdxYjs生物毒性预警次数</wsdl:documentation>
+      <wsdl:input message="tns:GetThreeHourDataDBRateListHttpGetIn" />
+      <wsdl:output message="tns:GetThreeHourDataDBRateListHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetThreeDataStatisticsTable">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">统计两段时间段内的数据总的实际条数（基于三小时均值）；&lt;br/&gt;SiteCode可为空&lt;br/&gt;StartDate格式：2014-01-01，EndDate格式：2014-01-01 &lt;br/&gt;swdx生物毒性，zp总磷，rjy溶解氧，gmsy高锰酸盐指数，ad氨氮，zd总氮</wsdl:documentation>
+      <wsdl:input message="tns:GetThreeDataStatisticsTableHttpGetIn" />
+      <wsdl:output message="tns:GetThreeDataStatisticsTableHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAlarmDataStatisticsTable">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">(横表)统计两段时间段内的超标因子（基于五分钟数据）&lt;br/&gt;StartDate格式：2014-01-01，EndDate格式：2014-01-01 &lt;br/&gt;数据列表说明：RegionName行政区划名称，RegionCode行政区划代码，SiteCode测站代码，SiteName测站名称，CBItems超标因子集合(包括名称、超标次数、最小值最大值)</wsdl:documentation>
+      <wsdl:input message="tns:GetAlarmDataStatisticsTableHttpGetIn" />
+      <wsdl:output message="tns:GetAlarmDataStatisticsTableHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAlarmDataStatisticsTable_S">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">(竖表)统计两段时间段内的超标因子（基于五分钟数据）&lt;br/&gt;StartDate格式：2014-01-01，EndDate格式：2014-01-01 &lt;br/&gt;数据列表说明：RegionName行政区划名称，RegionCode行政区划代码，SiteCode测站代码，SiteName测站名称，ItemID超标因子ID，ItemName超标因子名称&lt;br/&gt;cbcount超标次数，maxvalue最大值，minvalue最小值</wsdl:documentation>
+      <wsdl:input message="tns:GetAlarmDataStatisticsTable_SHttpGetIn" />
+      <wsdl:output message="tns:GetAlarmDataStatisticsTable_SHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRunDataRate">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">统计两个时刻点的运行率有效率&lt;br/&gt;StartDate格式：2014-01-01，EndDate格式：2014-01-01 &lt;br/&gt;数据列表说明：RegionName行政区划名称，RegionCode行政区划代码，SiteCode测站代码，SiteName测站名称，RunRate 运行率，DataEfficiency 有效率</wsdl:documentation>
+      <wsdl:input message="tns:GetRunDataRateHttpGetIn" />
+      <wsdl:output message="tns:GetRunDataRateHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReportInfo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">统计两个时刻点的达标率（单因子水质监控情况）&lt;br/&gt;StartDate格式：2014-01-01，EndDate格式：2014-01-01 &lt;br/&gt;数据列表说明：RegionName行政区划名称，RegionCode行政区划代码，SiteCode测站代码，SiteName测站名称，ZhDBl综合达标率，GmsyData高锰酸钾数据范围，GmsyDbl高锰酸盐达标率，ZdData总氮数据范围，ZdDbl总氮达标率，ZlData总磷数据范围，ZlDbl总磷达标率，AdData氨氮数据范围，AdDbl氨氮达标率，RjyData溶解氧数据范围，RjyDbl溶解氧达标率，SwdxData生物毒性数据范围，SwdxYjs生物毒性预警数</wsdl:documentation>
+      <wsdl:input message="tns:GetReportInfoHttpGetIn" />
+      <wsdl:output message="tns:GetReportInfoHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="DataServiceHttpPost">
+    <wsdl:operation name="GetDataStatisticsTable">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">统计两个时刻点的数据应有条数，实际条数，缺数条数(基于小时数据)；&lt;br/&gt;SiteCode可为空&lt;br/&gt;StartDate格式：2014-01-01 01&lt;br/&gt;EndDate格式：2014-01-01 13&lt;br/&gt;swdx生物毒性，zp总磷，rjy溶解氧，gmsy高锰酸盐指数，ad氨氮，zd总氮&lt;br/&gt;totalcount总的应有条数，count实际条数，qscount缺数条数</wsdl:documentation>
+      <wsdl:input message="tns:GetDataStatisticsTableHttpPostIn" />
+      <wsdl:output message="tns:GetDataStatisticsTableHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDataInfoTable">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">统计两个时刻点的数据情况(基于小时数据)；&lt;br/&gt;SiteCode可为空&lt;br/&gt;StartDate格式：2014-01-01 01&lt;br/&gt;EndDate格式：2014-01-01 13&lt;br/&gt;swdx生物毒性，zp总磷，rjy溶解氧，gmsy高锰酸盐指数，ad氨氮，zd总氮</wsdl:documentation>
+      <wsdl:input message="tns:GetDataInfoTableHttpPostIn" />
+      <wsdl:output message="tns:GetDataInfoTableHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetThreeHourDataDBRateList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">统计两个时间段内的数据达标情况(基于三小时均值)；&lt;br/&gt;StartDate格式：2014-01-01，EndDate格式：2014-01-02&lt;br/&gt;数据列表说明：RegionName行政区划名称，RegionCode行政区划代码，SiteCode测站代码，&lt;br/&gt;ZhDbl综合达标率，GmsyData高锰酸盐数据范围，GmsyDbl高锰酸盐达标率 &lt;br/&gt;ZdData总氮数据范围，ZdDbl总氮达标率，ZlData总磷数据范围，ZlDbl总磷达标率&lt;br/&gt;AdData氨氮数据范围，AdDbl氨氮达标率 &lt;br/&gt;RjyData溶解氧数据范围，RjyDbl溶解氧达标率，SwdxData生物毒性数据范围，SwdxYjs生物毒性预警次数</wsdl:documentation>
+      <wsdl:input message="tns:GetThreeHourDataDBRateListHttpPostIn" />
+      <wsdl:output message="tns:GetThreeHourDataDBRateListHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetThreeDataStatisticsTable">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">统计两段时间段内的数据总的实际条数（基于三小时均值）；&lt;br/&gt;SiteCode可为空&lt;br/&gt;StartDate格式：2014-01-01，EndDate格式：2014-01-01 &lt;br/&gt;swdx生物毒性，zp总磷，rjy溶解氧，gmsy高锰酸盐指数，ad氨氮，zd总氮</wsdl:documentation>
+      <wsdl:input message="tns:GetThreeDataStatisticsTableHttpPostIn" />
+      <wsdl:output message="tns:GetThreeDataStatisticsTableHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAlarmDataStatisticsTable">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">(横表)统计两段时间段内的超标因子（基于五分钟数据）&lt;br/&gt;StartDate格式：2014-01-01，EndDate格式：2014-01-01 &lt;br/&gt;数据列表说明：RegionName行政区划名称，RegionCode行政区划代码，SiteCode测站代码，SiteName测站名称，CBItems超标因子集合(包括名称、超标次数、最小值最大值)</wsdl:documentation>
+      <wsdl:input message="tns:GetAlarmDataStatisticsTableHttpPostIn" />
+      <wsdl:output message="tns:GetAlarmDataStatisticsTableHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAlarmDataStatisticsTable_S">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">(竖表)统计两段时间段内的超标因子（基于五分钟数据）&lt;br/&gt;StartDate格式：2014-01-01，EndDate格式：2014-01-01 &lt;br/&gt;数据列表说明：RegionName行政区划名称，RegionCode行政区划代码，SiteCode测站代码，SiteName测站名称，ItemID超标因子ID，ItemName超标因子名称&lt;br/&gt;cbcount超标次数，maxvalue最大值，minvalue最小值</wsdl:documentation>
+      <wsdl:input message="tns:GetAlarmDataStatisticsTable_SHttpPostIn" />
+      <wsdl:output message="tns:GetAlarmDataStatisticsTable_SHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRunDataRate">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">统计两个时刻点的运行率有效率&lt;br/&gt;StartDate格式：2014-01-01，EndDate格式：2014-01-01 &lt;br/&gt;数据列表说明：RegionName行政区划名称，RegionCode行政区划代码，SiteCode测站代码，SiteName测站名称，RunRate 运行率，DataEfficiency 有效率</wsdl:documentation>
+      <wsdl:input message="tns:GetRunDataRateHttpPostIn" />
+      <wsdl:output message="tns:GetRunDataRateHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReportInfo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">统计两个时刻点的达标率（单因子水质监控情况）&lt;br/&gt;StartDate格式：2014-01-01，EndDate格式：2014-01-01 &lt;br/&gt;数据列表说明：RegionName行政区划名称，RegionCode行政区划代码，SiteCode测站代码，SiteName测站名称，ZhDBl综合达标率，GmsyData高锰酸钾数据范围，GmsyDbl高锰酸盐达标率，ZdData总氮数据范围，ZdDbl总氮达标率，ZlData总磷数据范围，ZlDbl总磷达标率，AdData氨氮数据范围，AdDbl氨氮达标率，RjyData溶解氧数据范围，RjyDbl溶解氧达标率，SwdxData生物毒性数据范围，SwdxYjs生物毒性预警数</wsdl:documentation>
+      <wsdl:input message="tns:GetReportInfoHttpPostIn" />
+      <wsdl:output message="tns:GetReportInfoHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DataServiceSoap" type="tns:DataServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetDataStatisticsTable">
+      <soap:operation soapAction="http://tempuri.org/GetDataStatisticsTable" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataInfoTable">
+      <soap:operation soapAction="http://tempuri.org/GetDataInfoTable" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetThreeHourDataDBRateList">
+      <soap:operation soapAction="http://tempuri.org/GetThreeHourDataDBRateList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetThreeDataStatisticsTable">
+      <soap:operation soapAction="http://tempuri.org/GetThreeDataStatisticsTable" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAlarmDataStatisticsTable">
+      <soap:operation soapAction="http://tempuri.org/GetAlarmDataStatisticsTable" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAlarmDataStatisticsTable_S">
+      <soap:operation soapAction="http://tempuri.org/GetAlarmDataStatisticsTable_S" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRunDataRate">
+      <soap:operation soapAction="http://tempuri.org/GetRunDataRate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReportInfo">
+      <soap:operation soapAction="http://tempuri.org/GetReportInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DataServiceSoap12" type="tns:DataServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetDataStatisticsTable">
+      <soap12:operation soapAction="http://tempuri.org/GetDataStatisticsTable" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataInfoTable">
+      <soap12:operation soapAction="http://tempuri.org/GetDataInfoTable" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetThreeHourDataDBRateList">
+      <soap12:operation soapAction="http://tempuri.org/GetThreeHourDataDBRateList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetThreeDataStatisticsTable">
+      <soap12:operation soapAction="http://tempuri.org/GetThreeDataStatisticsTable" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAlarmDataStatisticsTable">
+      <soap12:operation soapAction="http://tempuri.org/GetAlarmDataStatisticsTable" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAlarmDataStatisticsTable_S">
+      <soap12:operation soapAction="http://tempuri.org/GetAlarmDataStatisticsTable_S" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRunDataRate">
+      <soap12:operation soapAction="http://tempuri.org/GetRunDataRate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReportInfo">
+      <soap12:operation soapAction="http://tempuri.org/GetReportInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DataServiceHttpGet" type="tns:DataServiceHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="GetDataStatisticsTable">
+      <http:operation location="/GetDataStatisticsTable" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataInfoTable">
+      <http:operation location="/GetDataInfoTable" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetThreeHourDataDBRateList">
+      <http:operation location="/GetThreeHourDataDBRateList" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetThreeDataStatisticsTable">
+      <http:operation location="/GetThreeDataStatisticsTable" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAlarmDataStatisticsTable">
+      <http:operation location="/GetAlarmDataStatisticsTable" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAlarmDataStatisticsTable_S">
+      <http:operation location="/GetAlarmDataStatisticsTable_S" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRunDataRate">
+      <http:operation location="/GetRunDataRate" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReportInfo">
+      <http:operation location="/GetReportInfo" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DataServiceHttpPost" type="tns:DataServiceHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="GetDataStatisticsTable">
+      <http:operation location="/GetDataStatisticsTable" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataInfoTable">
+      <http:operation location="/GetDataInfoTable" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetThreeHourDataDBRateList">
+      <http:operation location="/GetThreeHourDataDBRateList" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetThreeDataStatisticsTable">
+      <http:operation location="/GetThreeDataStatisticsTable" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAlarmDataStatisticsTable">
+      <http:operation location="/GetAlarmDataStatisticsTable" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAlarmDataStatisticsTable_S">
+      <http:operation location="/GetAlarmDataStatisticsTable_S" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRunDataRate">
+      <http:operation location="/GetRunDataRate" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReportInfo">
+      <http:operation location="/GetReportInfo" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="DataService">
+    <wsdl:port name="DataServiceSoap" binding="tns:DataServiceSoap">
+      <soap:address location="http://10.41.100.32:8007/DataService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="DataServiceSoap12" binding="tns:DataServiceSoap12">
+      <soap12:address location="http://10.41.100.32:8007/DataService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="DataServiceHttpGet" binding="tns:DataServiceHttpGet">
+      <http:address location="http://10.41.100.32:8007/DataService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="DataServiceHttpPost" binding="tns:DataServiceHttpPost">
+      <http:address location="http://10.41.100.32:8007/DataService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,321 @@
+﻿body {
+}
+.InfoWindowCSS{
+    width:360px;
+    max-height:435px;
+    font-family: 'Microsoft YaHei';
+}
+.InfoWindowCSS .InfoWindowTop{
+    width: 100%;
+    height: 60px;
+    background-color: royalblue;
+    color:#FFFFFF;
+    font-size:14px;
+}
+.InfoWindowCSS .InfoWindowTop .InfoWindowTopLeft{
+    width: 200px;
+    height: 100%;
+    float: left;
+}
+.InfoWindowCSS .InfoWindowTop .InfoWindowTopLeftAll{
+    width: 360px;
+    height: 100%;
+    float: left;
+    
+}
+.InfoWindowCSS .InfoWindowTop .InfoWindowTopLeftAll .InfoWindowLeftIn{
+    margin:8px 0 0 20px;
+    width:320px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
+.InfoWindowCSS .InfoWindowTop .InfoWindowTopLeftAll .InfoWindowLeftInOne{
+    margin-left:20px;
+    line-height:60px;
+}
+.InfoWindowCSS .InfoWindowTop .InfoWindowTopLeft .InfoWindowLeftIn{
+    margin:8px 0 0 20px;
+    
+}
+.InfoWindowCSS .InfoWindowTop .InfoWindowTopLeft .InfoWindowLeftInOne{
+    margin-left:20px;
+    line-height:60px;
+}
+.InfoWindowTopLeftNew{
+    width: 240px;
+    height: 100%;
+    float: left;
+    margin:8px 0px -10px 0px;
+    border-top:0px; 
+    border-bottom:0px;
+}
+/*.InfoWindowTopLeftNew{
+    width: 240px;
+    height:80px;
+    float: left;
+    margin:8px 0px -10px 0px;
+    border-top:0px; 
+    border-bottom:0px;
+}*/
+.InfoWindowTopCYJJQ{
+    width: 240px;
+    height:120px;
+    float: left;
+    margin:8px 0px -10px 0px;
+    border-top:0px; 
+    border-bottom:0px;
+}
+.InfoWindowCSS .InfoWindowTop .InfoWindowTopRight{
+    width:129px;
+    float:right;
+    margin:10px 0;
+    border-left:1px solid #FFFFFF;
+}
+.InfoWindowCSS .InfoWindowTop .InfoWindowTopRight .InfoWindowDetailBtn{
+    margin:4px auto;
+    border: 1px solid white;
+    height: 30px;
+    width: 90px;
+    text-align: center;
+    line-height: 30px;
+    font-size: 15px;
+    /*font-family: 'Microsoft YaHei';*/
+    font-weight: bold;
+    cursor:pointer;
+}
+.InfoWindowCSS .InfoWindowMiddle{
+    width: 100%;
+    height: 210px;
+    overflow:hidden;
+}
+.InfoWindowCSS .InfoWindowBottom{
+    width: 100%;
+    height: 140px;
+    overflow: auto;
+}
+
+.InfoWindowCSS .InfoWindowBottom .InfoWindowTable{
+    font-family: verdana,arial,sans-serif;
+    font-size: 11px;
+    color: #333333;
+    border-width: 1px;
+    border-color: #a9c6c9;
+    border-collapse: collapse;
+    width: 100%;
+    border: 0px;
+}
+
+.evenrowcolor{
+    background-color: #FCFCFF;
+}
+.oddrowcolor{
+    background-color: #F6FDFF;
+}
+table.InfoWindowTable tr{
+    height: 10px;
+    text-align: center;
+}
+table.InfoWindowTable td {
+  border-width: 1px;
+  padding: 1px;
+  border-style: solid;
+  border-color: #a9c6c9;
+  height: 5px;
+}
+.tdG{
+    color: #33FD12;
+}
+.InfoWindowCSS .SuperviseTime{
+    height: 20px;
+    vertical-align: middle;
+    font-size: 12px;
+    line-height: 20px;
+    /*font-family: Microsoft YaHei;*/
+    padding-left: 10px;
+    background: royalblue;
+    color: #FFFFFF;
+}
+.InfoWindowCSS .InfoWindowBottom{
+    width: 100%;
+    height: 140px;
+    overflow: auto;
+}
+.InfoWindowCSS .SuperviseTime .btnShowPoint{
+    height: 16px;
+    float: right;
+    width: 48px;
+    background: #666666;
+    border-radius: 5px;
+    margin-right: 4px;
+    text-align: center;
+    margin-top: 2px;
+    line-height: 16px;
+    color: #e6e6e6;
+    cursor:pointer;
+}
+.InfoWindowCSS .InfoWindowBottom1{
+    width: 100%;
+    height: 90px;
+    overflow: auto;
+    border-top:1px solid #1A1A1A;
+}
+.InfoWindowCSS .InfoWindowBottom1 .tableLine{
+    border-bottom:1px solid #1A1A1A;
+    border-right:1px solid #1A1A1A;
+    height:29px;
+    line-height:29px;
+}
+.InfoWindowCSS .InfoWindowBottom1 .tableLine .tableLineBar{
+    height:100%;
+    width:89px;
+    float:left;
+    border-left:1px solid #1A1A1A;
+    text-align:center;
+    /*font-family: 'Microsoft YaHei';*/
+}
+.InfoWindowCSS .InfoWindowBottom1 .tableLine .tableLineBarLast{
+    height:100%;
+    border-left:1px solid #1A1A1A;
+    margin-left:270px;
+    text-align:center;
+}
+.InfoWindowCSS .SuperviseTitle {
+    height: 25px;
+    vertical-align: middle;
+    font-size: 14px;
+    line-height: 25px;
+    /*font-family: 'Microsoft YaHei';*/
+    padding-left: 20px;
+    background: #666666;
+    color: #FFFFFF;
+}
+/*2016年6月28日18:18:18  王岩松*/
+.JudingWenShuHao {
+    text-align:left;
+    height: 25px;
+    vertical-align: top;
+    font-size: 14px;
+    line-height: 25px;
+    /*font-family: 'Microsoft YaHei';*/
+    padding-top:1px;
+    padding-left: 5px;
+    background: #666666;
+    color: #FFFFFF;
+    top:-10px;
+    width:355px;
+    float:left;   
+              
+}
+.InfoWindowjdsh {
+    width: 100%;
+    height: 50px;
+    overflow: auto;
+    border-top:1px solid #1A1A1A;
+}
+.InfoWindowjsxm {
+    width: 100%;
+    height: 150px;
+    overflow: auto;
+    border-top:1px solid #1A1A1A;
+}
+.InfoWindowBottomBar {
+    height:20px;
+    width:100%;
+    line-height:25px;
+    padding-top:2px;
+    padding-bottom:2px;
+}
+.InfoWindowBottomBar .InfoWindowBottomBarRight{
+    height:100%;
+    width:79px;
+    border-left:1px solid #000;
+    float:right;
+    text-align:center;
+}
+.InfoWindowBottomBar .InfoWindowBottomBarLeft{
+    height:100%;
+    text-align:center;
+    margin-right:80px;
+    margin-left:0px;
+    text-align:center;
+}
+.bottomTextBar{
+    width:100%;
+    height:20px;
+    line-height:20px;
+}
+.bottomTextBar .bottomTextBarRight{
+    height:100%;
+    width:79px;
+    float:right;
+    text-align:center;
+}
+.bottomTextBar .bottomTextBarLeft{
+    height:100%;
+    margin-right:80px;
+    margin-left:5px;
+}
+.bottomTextBar .bottomTextBarLeft .bottomTextBarLeftIn{
+    height:100%;
+    width:100%;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
+.InfoWindowBottonleft{
+    float:left;
+    width:160px;
+    margin-left:8px;
+}
+.InfoWindowBottonright{
+    float:right; 
+    width: 80px;
+    margin-right:8px;
+    
+}
+.InfoWindowBottonIn{
+    padding:2px 8px;
+}
+.InfoWindowCYJJQ{
+    width: 100%;
+    height: 200px;
+    overflow: auto;
+    border-top:1px solid #1A1A1A;
+}
+.tableLineBars{
+    height:100%;
+    width:89px;
+    float:left;
+    border-left:1px solid #1A1A1A;
+    text-align:right;
+    /*font-family: 'Microsoft YaHei';*/
+}
+ .tableLineBarLasts{
+    height:100%;
+    border-left:1px solid #1A1A1A;
+    margin-left:270px;
+    text-align:right;
+}
+.InfoWindowCSS.InfoWindowCityAirShow{
+    height: 28px;
+    height:100%;
+    line-height:25px;
+    /*width:100%;*/
+    border-top:1px solid #1A1A1A;
+    /*border-bottom:1px solid #1A1A1A;*/
+    border-right:1px solid #1A1A1A;
+    border-left:1px solid #1A1A1A;
+    border-bottom:1px solid #1A1A1A;
+    /*text-align:left;*/
+    /*overflow: auto;*/
+    /*font-family: 'Microsoft YaHei';*/
+}
+.td00{    background:#F8F8FF;}
+.td0{    background: #00E400;}
+.td1{    background: #00E400;}
+.td2{    background: #FFFF00;}
+.td3{    background: #FF7E00;}
+.td4{    background: #FF0000;}
+.td5{    background: #99004C;}
+.td6{    background: #7E0023;}

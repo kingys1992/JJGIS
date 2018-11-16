@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <category id="00" name="数据库设置">
+    <configItem id="00001" name="数据库连接库" type="string" description="数据库连接库" value="User ID=GISDB;Password=jjgis123.0;Data Source=HNHBORASERVER;Persist Security Info=False" />
+    <configItem id="00002" name="系统名称" type="string" description="系统名称" value="河南环保GIS" />
+    <configItem id="00003" name="IP" type="string" description="大华视频IP" value="10.41.100.118" />
+    <configItem id="00004" name="User" type="string" description="大华视频用户名" value="liuying" />
+    <configItem id="00005" name="wpass" type="string" description="大华视频密码" value="12345" />
+    <configItem id="00011" name="重点污染源" type="string" description="重点污染源" 
+                value="User ID=automonitorv5;Password=!QAZ2wsx;Data Source=zdwry;Persist Security Info=False" />
+    <configItem id="00012" name="城市空气质量" type="string" description="城市空气质量" 
+                value="User ID=airgis;Password=db_oracle_airstation;Data Source=cskq;Persist Security Info=False" />
+    <!--<configItem id="00013" name="地表水（sql）" type="string" description="地表水（sql）" 
+                value="User ID=syhk;Password=syhk;Data Source=cskq;Persist Security Info=False" />-->
+    <configItem id="00013" name="饮用水源地" type="string" description="饮用水源地" 
+                value="User ID=hnhbdrink;Password=hnhbdrink;Data Source=yysyd;Persist Security Info=False" />
+    <configItem id="00014" name="综合整理区域" type="string" description="综合整理区域" 
+                value="User ID=zdqy;Password=hahbj;Data Source=zhzzq;Persist Security Info=False" />
+    <configItem id="00015" name="信息公开" type="string" description="信息公开" 
+                value="User ID=datacenter;Password=abc;Data Source=xxgk;Persist Security Info=False" />
+    <configItem id="00016" name="资源中心" type="string" description="资源中心" 
+                value="User ID=wryxxzy;Password=!QAZ2wsx;Data Source=zyzx;Persist Security Info=False" />
+    <configItem id="00017" name="水厂工况" type="string" description="水厂工况" 
+                value="User ID=wscgk;Password=wscgk;Data Source=gk;Persist Security Info=False" />
+    <configItem id="00018" name="电厂工况" type="string" description="电厂工况" 
+                value="User ID=gk;Password=gk;Data Source=gk;Persist Security Info=False" />
+  </category>
+  <category id="01" name="系统设置">
+    <configItem id="01001" name="登陆用户刷新时间" type="string" description="登陆用户刷新时间" value="1" />
+    </category>
+  
+ 
+</configuration>
